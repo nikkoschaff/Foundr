@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Foundr::Application.config.secret_token = '378d5d252270af0158867981ba9f54da4b0e5cd40c735c798dd412325adfa38fc4c3cd76a0817a350a9d672dddb7eba6ae3a9b05fada996f0c5fb6148cd81fbe'
+Foundr::Application.config.secret_token = 'ff413ef4f7f02a40a81b4fb202df2561f95539c3022c54fe1bd1cd6e4539c6a9d9f4f8dcc50701577a9bb8bfd27a9d6a54239087def2aed17541d013335789f4'
