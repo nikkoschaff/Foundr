@@ -39,8 +39,8 @@ private
     end
 
     def filter_unauthorized
-        redirect_to :action => :unauthorized, :controller => :application
-        return false
+        #redirect_to :action => :unauthorized, :controller => :application
+        return true #false
     end
 
 end

@@ -3,8 +3,8 @@ class RolesController < ApplicationController
                                                     :new,
                                                     :show,
                                                     :edit,
-                                                    :create
-                                                    :update
+                                                    :create,
+                                                    :update,
                                                     :destroy,
                                                     :logout ]
     before_filter :filter_unauthenticated, :only => [ :login,
@@ -20,7 +20,7 @@ class RolesController < ApplicationController
     end
 
     def new
-        @role = Roll.new
+        @role = Role.new
     end
 
     def create
@@ -45,6 +45,10 @@ class RolesController < ApplicationController
         redirect_to :action => :index
     end
 
+    def signup
+        @role = Role.new
+    end
+
     def logout
         role_unauthenticate
         redirect_to :action => :login
@@ -57,4 +61,11 @@ class RolesController < ApplicationController
             render :action => :login
         end
     end
+
+private
+
+    def find_role
+        @role = Role.find( params[:id] )
+    end
+
 end
