@@ -15,4 +15,5 @@ Employment_Status.create!( :status => "Self-employed" )
 # Seed ambitions
 Ambition.create!( :name => "Build my team" )
 Ambition.create!( :name => "Join a team" )
+Ambition.create!( :name => "Networking" )
 Ambition.create!( :name => "Not looking" )
