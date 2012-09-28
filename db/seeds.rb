@@ -6,12 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-# Seed employment status
-Employment_Status.create!( :status => "Employed" )
-Employment_Status.create!( :status => "Unemployed" )
-Employment_Status.create!( :status => "Self-employed" )
-
 # Seed ambitions
 Ambition.create!( :name => "Build my team" )
 Ambition.create!( :name => "Join a team" )
