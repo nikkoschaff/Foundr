@@ -5,9 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-# Seed ambitions
-Ambition.create!( :name => "Build my team" )
-Ambition.create!( :name => "Join a team" )
-Ambition.create!( :name => "Networking" )
-Ambition.create!( :name => "Not looking" )
