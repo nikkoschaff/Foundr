@@ -1,4 +1,6 @@
 Foundr::Application.routes.draw do
+  resources :profiles
+
     root :to => 'roles#login'
 
     get 'roles/login' => 'roles#login'
