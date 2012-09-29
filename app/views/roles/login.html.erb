@@ -1,3 +1,8 @@
-<h1>Login role</h1>
+<h1 class="loginHeader>Find your dream team</h1>
+<p class="loginText">Find and meet entrepreneurs, professionals, and innovators near you.</p>
 
-<%= render 'login_form' %>
+<%= render :partial => 'login_form' %>
+
+<p>New to Foundr?  Sign up
+<%= link_to "Here", :action => "signup", :controller => "roles" %>
+</p>

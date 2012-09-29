@@ -1,13 +1,11 @@
 <%= form_tag role_authenticate_path, :method => :post do %>
     <div class="field">
-        <%= label_tag :name %>
-        <%= text_field_tag :name %>
+        <%= text_field_tag :name, nil, :placeholder => "Full name" %>
     </div>
     <div class="field">
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
+        <%= password_field_tag :password, nil, :placeholder => "Password" %>
     </div>
     <div class="actions">
-        <%= submit_tag "Login" %>
+        <%= submit_tag "Sign in", :class => "btn btn-primary" %>
     </div>
 <% end %>

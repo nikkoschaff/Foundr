@@ -12,18 +12,15 @@
     <% end %>
 
     <div class="field">
-        <%= f.label :name %><br />
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :placeholder => "Name" %>
     </div>
     <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password %>
+        <%= f.password_field :password, :placeholder => "Password" %>
     </div>
     <div class="field">
-        <%= f.label "Confirm Password" %><br />
-        <%= f.password_field :password_confirm %>
+        <%= f.password_field :password_confirm, :placeholder => "Password confirmation" %>
     </div>
-    <div class="actions">
-        <%= f.submit %>
+    <div class="action">
+        <%= f.submit "Sign up for Foundr", :class => "btn btn-primary" %>
     </div>
 <% end %>
