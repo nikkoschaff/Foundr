@@ -62,6 +62,22 @@ class RolesController < ApplicationController
         end
     end
 
+    def search
+	
+    end
+
+
+    def show
+
+	
+    end
+
+
+    def edit
+
+
+    end
+
 private
 
     def find_role

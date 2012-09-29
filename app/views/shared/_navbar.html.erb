@@ -1,0 +1,38 @@
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+
+	<% unless session[:role_id].nil? %>
+	<!-- Logged in -->
+	<a class="brand">Foundr<%#= link_to "Foundr", :action => "index", :controller => "roles" %></a>
+        <div class="nav-collapse">
+          <ul class="nav">
+	    <li><%= link_to "Home", :action => "index", :controller => "roles" %></li>
+            <li><%= link_to "My Profile", :action => "show", :controller => "roles", :id => session[:role_id] %></li>
+            <li><%= link_to "Edit Profile", :action => "edit", :controller => "roles", :id => session[:role_id] %></li>
+            <li><%= link_to "Search", :action => "search", :controller => "roles" %></li>
+            <li><%= link_to "Logout", :action => "logout", :controller => "roles", :confirm => "Are you sure you want to log out?" %></li>
+          </ul>
+        </div>
+
+	<!-- /Logged in -->
+	<% else %>
+        <!-- NOT Logged in -->
+        <a class="brand">Foundr<%#= link_to "Foundr", :action => "login", :controller => "roles" %></a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Sign in", :action => "login", :controller => "roles" %></li>
+            <li><%= link_to "Sign up", :action => "signup", :controller => "roles" %></li>
+          </ul>
+        </div>
+        <!-- /NOT logged in -->
+	<% end %>
+
+      </div>
+    </div>
+  </div>
