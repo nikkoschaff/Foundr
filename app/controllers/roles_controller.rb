@@ -24,7 +24,7 @@ class RolesController < ApplicationController
     end
 
     def create
-        @role = Role.create( params[:role] )
+        @role = Role.new( params[:role] )
         if @role.save
             redirect_to :action => :index
         else
@@ -60,22 +60,6 @@ class RolesController < ApplicationController
         else
             render :action => :login
         end
-    end
-
-    def search
-	
-    end
-
-
-    def show
-
-	
-    end
-
-
-    def edit
-
-
     end
 
 private
