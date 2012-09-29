@@ -16,7 +16,8 @@
             <li><%= link_to "My Profile", :action => "show", :controller => "roles", :id => session[:role_id] %></li>
             <li><%= link_to "Edit Profile", :action => "edit", :controller => "roles", :id => session[:role_id] %></li>
             <li><%= link_to "Search", :action => "search", :controller => "roles" %></li>
-            <li><%= link_to "Logout", :action => "logout", :controller => "roles", :confirm => "Are you sure you want to log out?" %></li>
+            <!-- TODO Get logout to work -->
+            <li><%= link_to "Logout", :confirm => "Are you sure you want to log out?" %></li>
           </ul>
         </div>
 	<!-- /Logged in -->

@@ -1,0 +1,20 @@
+<h1>Search</h1>
+
+<%= form_tag :search, :method => :post do %>
+
+  <div class="field">
+    <% @ambitions = Ambition.all %>
+    <% @ambitions.each do |ambition| %>
+      <%= check_box_tag( ambition.name, "yes", role_current.profile.ambitions.include(ambition) ) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tag_list, "Skills (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Search", :class => "btn btn-primary" %>
+  </div>
+<% end %>

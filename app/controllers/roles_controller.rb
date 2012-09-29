@@ -25,7 +25,12 @@ class RolesController < ApplicationController
 
     def create
         @role = Role.new( params[:role] )
-        if @role.save
+        if @role.save!
+            @profile = Profile.create(:about => "", :headline => "", :name => "")
+            @role.profile = @profile
+            @profile.role = @role
+            @role.save!
+            @profile.save!
             redirect_to :action => :index
         else
             render :action => :new
@@ -34,6 +39,8 @@ class RolesController < ApplicationController
 
     def update
         if @role.update_attributes( params[:role] )
+            # TODO update profile as well
+            # TODO update picture (delete old)
             redirect_to :action => :index
         else
             render :action => :edit
@@ -55,12 +62,14 @@ class RolesController < ApplicationController
     end
 
     def authenticate
-        if role_authenticate( params[:name], params[:password] )
+        if role_authenticate( params[:email], params[:password] )
             redirect_to :action => :index
         else
             render :action => :login
         end
     end
+
+
 
 private
 

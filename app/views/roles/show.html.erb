@@ -1,34 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<!-- TODO profile picture -->
+<p><%= image_tag @role.picture_url %></p>
 
 <div class="show-info-basic">
 	<div class="show-name">
 		<p class="show-info">
-		  <%= @role.name %>
+		  <%= @role.profile.name %>
 		</p>
 	</div>
 
 	<div class="show-distance">
 		<p class="show-info">
-		  <!-- TODO add real value -->
-		  (distance)
+		  <!-- Helper function for role distance -->
+		  profile_distance( role_current, @role ) miles away
 		</p>
 	</div>
 
 	<div class="show-email">
 		  <p class="show-info">
-		  	<!-- TODO add real value -->
-		  	(email)
+		  	<%= @role.profile.email %>
 		  </p>
 	</div>
 
 	<div class="show-ambitions">
 		<p>
-		  <!-- TODO add real value -->
 			<strong>Ambitions:</strong>
 		  <p class="show-info">
-		  	(ambitions)
+		  	<% @role.profile.ambitions.each do |ambition| %>
+		  		<%= ambition %>
+		  		<% unless ambition == @role.profile.ambitions.last %>
+		  		,
+		  		<% end %>
+		  	<% end %>
 		  </p>
 		</p>
 	</div>
@@ -36,9 +39,13 @@
 	<div class="show-skills">
 		<p>
 			<strong>Skills:</strong>
-		  <!-- TODO add real value -->
 		  <p class="show-info">
-		  	(skills)
+		  	<%= @role.tag_list.each do |skill| %>
+		  		<%= skill %>
+		  		<% unless skill == @role.profile.tag_list.last %>
+		  		,
+		  		<% end %>		  		
+		  	<% end %>
 		  </p>
 		</p>
 	</div>
@@ -50,18 +57,16 @@
 
 	<div class="show-headline">
 		<p>
-		  <!-- TODO add real value -->
 		  <h4 class="show-headline">
-		  	(headline)
+		  	<%= @role.profile.headline %>
 		  </h4>
 		</p>
 	</div>
 
 	<div class="show-about">
 		<p>
-		  <!-- TODO add real value -->
 		  <p class="show-info">
-		  	(about)
+		  	<%= @role.profile.about %>
 		  </p>
 		</p>
 	</div>

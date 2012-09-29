@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
+  <p>
+    <%= f.file_field :picture %>
+  </p>
+
   <div class="field">
   	<%= f.label :name %>
     <%= f.text_field :name %>
@@ -18,25 +22,32 @@
 
   <div class="field">
   	<%= f.label :headline %>
-    <%#= f.text_field :headline %>
+    <%= f.text_field :headline %>
   </div>
 
    <div class="field">
    	<%= f.label :about %>
-    <%#= f.text_field :about %>
+    <%= f.text_field :about %>
   </div>
 
+  <div class="field">
+    <% @ambitions = Ambition.all %>
+    <% @ambitions.each do |ambition| %>
+      <%= check_box_tag( ambition.name, "yes", @role.profile.ambitions.include(ambition) ) %>
+    <% end %>
+  </div>
 
-<!-- TODO ambitions -->
-
-<!-- TODO skills -->
+  <div class="field">
+    <%= f.label :tag_list, "Skills (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
+  </div>
 
   <div class="field">
   	<%= f.label :email %>
-    <%#= f.text_field :email %>
+    <%= f.text_field :email %>
   </div>
 
   <div class="actions">
-    <%= f.submit :class => "btn btn-primary" %>
+    <%= f.submit "Update profile", :class => "btn btn-primary" %>
   </div>
 <% end %>

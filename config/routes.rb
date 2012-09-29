@@ -1,5 +1,6 @@
 Foundr::Application.routes.draw do
   resources :profiles
+  resources :ambitions
 
     root :to => 'roles#login'
 
@@ -10,6 +11,6 @@ Foundr::Application.routes.draw do
     get 'roles/show' => 'roles#show'
     get 'roles/search' => 'roles#search'
     resources :roles
-
+    get 'tags/:tag', to: 'roles#index', as: :tag
 
 end

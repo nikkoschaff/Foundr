@@ -14,10 +14,10 @@ private
         return @role_current
     end
 
-    def role_authenticate( name, password )
+    def role_authenticate( email, password )
         raise RuntimeError if role_authenticated?
 
-        @role_current = Role.authenticate( name, password )
+        @role_current = Role.authenticate( email, password )
         session[:role_id] = @role_current.id if @role_current
         return @role_current
     end
