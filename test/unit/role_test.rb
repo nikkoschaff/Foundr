@@ -63,6 +63,11 @@ class RoleTest < ActiveSupport::TestCase
         assert( r.valid? )
     end
 
+    test "profile" do
+        assert_equal( Profile.find( 1 ), Role.find( 1 ).profile )
+        assert_equal( Profile.find( 2 ), Role.find( 2 ).profile )
+    end
+
     test "encrypt_password" do
         r = Role.new( :name => "test_user_4",
                       :password => "long_enough",

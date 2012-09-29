@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  headline: MyString
-  about: MyString
-  email: MyString
+    id: 1
+    headline: profile_1
+    about: about_1
+    email: email_1
+    role_id: 1
 
 two:
-  headline: MyString
-  about: MyString
-  email: MyString
+    id: 2
+    headline: profile_2
+    about: about_2
+    email: email_2
+    role_id: 2

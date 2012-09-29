@@ -20,9 +20,11 @@ class Role < ActiveRecord::Base
 
     CONFIRM_PASSWORD_MESSAGE = "passwords do not match"
 
-    attr_accessible :name, :password, :password_confirm
+    attr_accessible :name, :password, :password_confirm, :profile_id
 
     attr_accessor :password_confirm
+
+    has_one :profile
 
     validates :name, :presence => { :message => NAME_PRESENCE_MESSAGE }
     validates :name, :uniqueness => { :message => NAME_UNIQUENESS_MESSAGE }
