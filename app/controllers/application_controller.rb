@@ -31,16 +31,29 @@ private
     end
 
     def filter_authenticated
-        filter_unauthorized unless role_authenticated?
+        unless role_authenticated?
+            filter_unauthorized
+        else
+            true
+        end
     end
 
     def filter_unauthenticated
-        filter_unauthorized unless !role_authenticated?
+        if role_authenticated?
+            filter_forbiden
+        else
+            true
+        end
     end
 
     def filter_unauthorized
-        #redirect_to :action => :unauthorized, :controller => :application
-        return true #false
+        render 'application/unauthorized', :status => :unauthorized
+        return false
+    end
+
+    def filter_forbiden
+        render 'application/forbiden', :status => :forbidden
+        return false
     end
 
 end
