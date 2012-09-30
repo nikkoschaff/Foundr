@@ -14,19 +14,24 @@ private
         return @role_current
     end
 
+    def role_current=( role )
+        unless role.nil?
+            session[:role_id] = role.id
+        else
+            session.delete :role_id
+        end
+        @role_current = role
+    end
+
     def role_authenticate( email, password )
         raise RuntimeError if role_authenticated?
 
-        @role_current = Role.authenticate( email, password )
-        session[:role_id] = @role_current.id if @role_current
-        return @role_current
+        self.role_current = Role.authenticate( email, password )
     end
 
     def role_unauthenticate
         raise RuntimeError if !role_authenticated?
-        session.delete :role_id
-        @role_current = nil
-        return true
+        self.role_current = nil
     end
 
     def filter_authenticated
