@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-    attr_accessible :about, :name, :headline, :tag_list
+    attr_accessible :about, :name, :headline, :tag_list, :ambitions_attributes
     acts_as_taggable
 
     has_one :geolocation
@@ -11,4 +11,5 @@ class Profile < ActiveRecord::Base
     validates :headline, :length => { :maximum => 28, :message => "Headline must be at most 28 characters" }
 
     has_and_belongs_to_many :ambitions
+    accepts_nested_attributes_for :ambitions
 end

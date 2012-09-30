@@ -1,6 +1,7 @@
 
-<!-- TODO profile picture -->
-<p><%#= image_tag @role.picture_url %></p>
+<div class="show-picture">
+	<p><%= image_tag @role.picture_url %></p>
+</div>
 
 <div class="show-info-basic">
 	<div class="show-name">
@@ -40,12 +41,7 @@
 		<p>
 			<strong>Skills:</strong>
 		  <p class="show-info">
-		  	<%= @role.profile.tag_list.each do |skill| %>
-		  		<%= skill %>
-		  		<% unless skill == @role.profile.tag_list.last %>
-		  		,
-		  		<% end %>		  		
-		  	<% end %>
+		  	<%= @role.profile.tag_list %>
 		  </p>
 		</p>
 	</div>

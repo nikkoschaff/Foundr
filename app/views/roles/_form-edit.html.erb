@@ -11,41 +11,62 @@
     </div>
   <% end %>
 
-  <p>
+  <div class="field">
+    <%= f.label :picture, "Profile Picture" %>
     <%= f.file_field :picture %>
-  </p>
-
-  <div class="field">
-  	<%= f.label :name %>
-    <%= f.text_field :name %>
   </div>
 
-  <div class="field">
-  	<%= f.label :headline %>
-    <%= f.text_field :headline %>
-  </div>
+  <%= f.fields_for :profile do |builder| %>
+    <fieldset>
+    <div class="field">
+      <%= builder.label :name %>
+      <%= builder.text_field :name %>
+    </div>
+    </fieldset>
 
-   <div class="field">
-   	<%= f.label :about %>
-    <%= f.text_field :about %>
-  </div>
+    <fieldset>
+    <div class="field">
+      <%= builder.label :headline %>
+      <%= builder.text_field :headline %>
+    </div>
+    </fieldset>
 
-  <div class="field">
-    <% @ambitions = Ambition.all %>
-    <% @ambitions.each do |ambition| %>
-      <%= check_box_tag( ambition.name, "yes", @role.profile.ambitions.include(ambition) ) %>
-    <% end %>
-  </div>
+    <fieldset>
+     <div class="field">
+      <%= builder.label :about %>
+      <!-- TODO Make text field for about bigger -->
+      <%= builder.text_field :about %>
+    </div>
+    </fieldset>
 
-  <div class="field">
-    <%= f.label :tag_list, "Skills (separated by commas)" %><br />
-    <%= f.text_field :tag_list %>
-  </div>
+    <!-- TODO get ambitions to work -->
+    <fieldset>
+    <div class="field">
+      <%# @ambitions = Ambition.all %>
+      <%# @ambitions.each do |ambition| %>
+        <%#= builder.check_box ( ambition.name, "yes", @role.profile.ambitions.include(ambition) ) %>
+      <%# end %>
+    </div>
+    </fieldset>
+
+    <fieldset>
+    <div class="field-about">
+      <%= builder.label :tag_list, "Skills (separated by commas)" %>
+      <%= builder.text_field :tag_list, :size => 150 %>
+    </div>
+    </fieldset>
+
+  <% end %>
+
+
 
   <div class="field">
   	<%= f.label :email %>
     <%= f.text_field :email %>
   </div>
+
+  <%= f.hidden_field :password, :value => @role.password  %>
+  <%= f.hidden_field :password_confirm, :value => @role.password %>
 
   <div class="actions">
     <%= f.submit "Update profile", :class => "btn btn-primary" %>

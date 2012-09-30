@@ -37,8 +37,6 @@ class RolesController < ApplicationController
 
     def update
         if @role.update_attributes( params[:role] )
-            # TODO update profile as well
-            # TODO update picture (delete old)
             redirect_to :action => :index
         else
             render :action => :edit
