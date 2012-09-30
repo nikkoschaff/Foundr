@@ -1,1 +1,8 @@
-<h1>401 - Unauthorized</h2>
+<h1>401 - Unauthorized</h1>
+<p>Whoops!  You probably shouldn't be here.  It's ok, you can get out easily, just take 
+<% if session[:role_id].nil? %>
+	<%= link_to "this link", :action => "login", :controller => "roles" %>
+<% else %>
+	<%= link_to "this link", :action => "index", :controller => "roles" %>
+<% end %>
+</p>

@@ -1,42 +1,53 @@
-<%= form_for(@role, :validate => true) do |f| %>
-  <% if @role.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this profile from being saved:</h2>
+<%= simple_form_for @role do |f| %>
 
-      <ul>
-      <% @role.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <div class="field">
+    <%= f.label :picture, :as => "Profile Picture" %>
+    <%= f.file_field :picture, :as => "Profile Picture" %>
+  </div>
+
+  <%= f.simple_fields_for :profile do |profile| %>
+    <fieldset>
+      <div class="field">
+        <%= profile.input :name %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="field">
+        <%= profile.input :headline %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="field">
+        <!-- TODO Make text field for about bigger -->
+        <%= profile.input :about %>
+      </div>
+    </fieldset>
+
+    <!-- TODO get ambitions to work -->
+    <fieldset>
+      <div class="field">
+        <%= profile.association :ambitions, :as => :check_boxes %>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="field-about">
+        <%= profile.input :tag_list, :size => 150 %>
+      </div>
+    </fieldset>
+
   <% end %>
 
   <div class="field">
-  	<%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.input :email, :required => false %>
   </div>
 
-  <div class="field">
-  	<%= f.label :headline %>
-    <%#= f.text_field :headline %>
-  </div>
-
-   <div class="field">
-   	<%= f.label :about %>
-    <%#= f.text_field :about %>
-  </div>
-
-
-<!-- TODO ambitions -->
-
-<!-- TODO skills -->
-
-  <div class="field">
-  	<%= f.label :email %>
-    <%#= f.text_field :email %>
-  </div>
+  <%= f.hidden_field :password, :value => @role.password  %>
+  <%= f.hidden_field :password_confirm, :value => @role.password %>
 
   <div class="actions">
-    <%= f.submit :class => "btn btn-primary" %>
+    <%= f.button :submit, :as => "Update profile", :class => "btn btn-primary" %>
   </div>
 <% end %>

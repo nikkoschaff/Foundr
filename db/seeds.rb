@@ -6,12 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#Role.create!(:name => "n12345678",:password => "123456789",:password_confirm => "123456789")
-#Role.create!(:name => "n23456789",:password => "123456789",:password_confirm => "123456789")
-#Role.create!(:name => "n345678910",:password => "123456789",:password_confirm => "123456789")
-Role.create!(:name => "an345678910",:password => "123456789",:password_confirm => "123456789")
-Role.create!(:name => "bn345678910",:password => "123456789",:password_confirm => "123456789")
-Role.create!(:name => "cn345678910",:password => "123456789",:password_confirm => "123456789")
-Role.create!(:name => "dn345678910",:password => "123456789",:password_confirm => "123456789")
-Role.create!(:name => "en345678910",:password => "123456789",:password_confirm => "123456789")
-Role.create!(:name => "fn345678910",:password => "123456789",:password_confirm => "123456789")
+# Load ambitions
+unless Ambition.find_by_id(3)
+	Ambition.create!(:name => "Build my team")
+	Ambition.create!(:name => "Join a team")
+	Ambition.create!(:name => "Networking")
+end
+
+# Load admin role
+unless Role.find_by_id(1)
+	Role.create!(:email => "admin@foundrapp.com", :password => "qwertyuiop", :password_confirm => "qwertyuiop")
+end
+
+# Load admin profile
+unless Profile.find_by_id(1)
+	Profile.create!(:name => "admin", :headline => "admin", :about => "admin")
+end
+
+
+@role = Role.find(1)
+@role.build_profile(:name => "admin", :headline => "admin", :about => "admin")
+@role.save!

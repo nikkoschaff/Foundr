@@ -44,6 +44,11 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
+        @geolocation = Geolocation.new
+        @profile.geolocation = @geolocation
+        @geolocation.profile = @profile
+        @profile.save!
+        @geolocation.save!
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
       else

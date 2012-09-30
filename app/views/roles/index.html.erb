@@ -3,7 +3,12 @@
 <% @roles.each do |role| %>
   <%= "<tr class=userRow>".html_safe if count % 4 == 0 %>
   <%= "</tr>".html_safe if count % 4 == 4 %>
-    <td class="userData"><small><%= link_to "#{role.name}", :action => "show", :controller => "roles", :id => role.id %></small><img src="http://placehold.it/80x80", class="img-rounded"></img></td>
+    <td class="userData"><small><%= link_to "#{role.profile.name}", :action => "show", :controller => "roles", :id => role.id %></small>
+    	<% if role.picture? %>
+    		<%= image_tag role.picture_url %>
+    	<% else %>
+    		<img src="http://placehold.it/80x80", class="img-rounded"></img></td>
+    	<% end %>
   <% count = count + 1 %>
 <% end %>
 </table>

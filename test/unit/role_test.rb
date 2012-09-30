@@ -2,35 +2,35 @@ require 'test_helper'
 
 class RoleTest < ActiveSupport::TestCase
 
-    test "name" do
-        assert_equal( "test_user_1", Role.find( 1 ).name )
-        assert_equal( "test_user_2", Role.find( 2 ).name )
+    test "email" do
+        assert_equal( "test_user_1", Role.find( 1 ).email )
+        assert_equal( "test_user_2", Role.find( 2 ).email )
 
         r = Role.new( :password => "test_password" )
         assert( !r.valid? )
-        assert_equal( [ Role::NAME_PRESENCE_MESSAGE,
-                        Role::NAME_LENGTH_MESSAGE,
-                        Role::NAME_FORMAT_MESSAGE ], r.errors[:name] )
+        assert_equal( [ Role::EMAIL_PRESENCE_MESSAGE,
+                        Role::EMAIL_LENGTH_MESSAGE,
+                        Role::EMAIL_FORMAT_MESSAGE ], r.errors[:email] )
 
-        r = Role.new( :name => "aaa",
+        r = Role.new( :email => "aaa",
                       :password => "test_password",
                       :password_confirm => "test_password" )
         assert( !r.valid? )
-        assert_equal( [ Role::NAME_LENGTH_MESSAGE ], r.errors[:name] )
+        assert_equal( [ Role::EMAIL_LENGTH_MESSAGE ], r.errors[:email] )
 
-        r = Role.new( :name => "inval?d_format",
+        r = Role.new( :email => "inval?d_format",
                       :password => "test_password",
                       :password_confirm => "test_password" )
         assert( !r.valid? )
-        assert_equal( [ Role::NAME_FORMAT_MESSAGE ], r.errors[:name] )
+        assert_equal( [ Role::EMAIL_FORMAT_MESSAGE ], r.errors[:email] )
 
-        r = Role.new( :name => "test_user_1",
+        r = Role.new( :email => "test_user_1",
                       :password => "test_password",
                       :password_confirm => "test_password" )
         assert( !r.valid? )
-        assert_equal( [ Role::NAME_UNIQUENESS_MESSAGE], r.errors[:name] )
+        assert_equal( [ Role::EMAIL_UNIQUENESS_MESSAGE], r.errors[:email] )
 
-        r = Role.new( :name => "test_user_3",
+        r = Role.new( :email => "test_user_3",
                       :password => "test_password",
                       :password_confirm => "test_password" )
         assert( r.valid? )
@@ -42,22 +42,22 @@ class RoleTest < ActiveSupport::TestCase
         assert_equal( "6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w=",
                       Role.find( 2 ).password )
 
-        r = Role.new( :name => "test_user_3",
+        r = Role.new( :email => "test_user_3",
                       :password => "short",
                       :password_confirm => "short" )
         assert( !r.valid? )
         assert_equal( [ Role::PASSWORD_LENGTH_MESSAGE ], r.errors[:password] )
 
-        r = Role.new( :name => "test_user_3",
+        r = Role.new( :email => "test_user_3",
                       :password => "long_enough",
                       :password_confirm => "but_different" )
         assert( !r.valid? )
         assert_equal( [ Role::CONFIRM_PASSWORD_MESSAGE ], r.errors[:password] )
 
-        r = Role.new( :name => "test_user_3" )
+        r = Role.new( :email => "test_user_3" )
         assert( r.valid? )
 
-        r = Role.new( :name => "test_user_3",
+        r = Role.new( :email => "test_user_3",
                       :password => "long_enough",
                       :password_confirm => "long_enough" )
         assert( r.valid? )
@@ -69,7 +69,7 @@ class RoleTest < ActiveSupport::TestCase
     end
 
     test "encrypt_password" do
-        r = Role.new( :name => "test_user_4",
+        r = Role.new( :email => "test_user_4",
                       :password => "long_enough",
                       :password_confirm => "but_different" )
 
@@ -78,7 +78,7 @@ class RoleTest < ActiveSupport::TestCase
         assert_equal( Digest::SHA2.base64digest( "long_enough" ), r.password )
         assert_equal( "but_different", r.password_confirm )
 
-        r = Role.new( :name => "test_user_4",
+        r = Role.new( :email => "test_user_4",
                       :password => "long_enough",
                       :password_confirm => "long_enough" )
 
@@ -94,8 +94,8 @@ class RoleTest < ActiveSupport::TestCase
         assert_equal( Role.find( 2 ), r )
 
         assert( !Role.authenticate( "test_user_1", "wrong_pass" ) )
-        assert( !Role.authenticate( "wrong_name", "password_2" ) )
-        assert( !Role.authenticate( "wrong_name", "wrong_pass" ) )
+        assert( !Role.authenticate( "wrong_email", "password_2" ) )
+        assert( !Role.authenticate( "wrong_email", "wrong_pass" ) )
     end
 
 end

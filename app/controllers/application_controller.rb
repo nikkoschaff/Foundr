@@ -23,15 +23,14 @@ private
         @role_current = role
     end
 
-    def role_authenticate( name, password )
+    def role_authenticate( email, password )
         raise RuntimeError if role_authenticated?
 
-        self.role_current = Role.authenticate( name, password )
+        self.role_current = Role.authenticate( email, password )
     end
 
     def role_unauthenticate
         raise RuntimeError if !role_authenticated?
-
         self.role_current = nil
     end
 
@@ -57,7 +56,8 @@ private
     end
 
     def filter_forbiden
-        render 'application/forbiden', :status => :forbidden
+        #render 'application/forbiden', :status => :forbidden
+        redirect_to :action => "index", :controller => "roles"
         return false
     end
 

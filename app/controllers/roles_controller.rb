@@ -26,10 +26,13 @@ class RolesController < ApplicationController
 
     def create
         @role = Role.new( params[:role] )
-        if @role.save
+        if @role.save!
+            @role.build_profile(:about => "", :headline => "", :name => "")
+            @role.profile.ambitions = Array.new
+            @role.save!
             redirect_to :action => :index
         else
-            render :action => :new
+            render :action => :signup
         end
     end
 
@@ -64,12 +67,14 @@ class RolesController < ApplicationController
     end
 
     def authenticate
-        if role_authenticate( params[:name], params[:password] )
+        if role_authenticate( params[:email], params[:password] )
             redirect_to :action => :index
         else
             render :action => :login
         end
     end
+
+
 
 private
 

@@ -1,8 +1,17 @@
-<h1 class="loginHeader">Find your dream team</h1>
-<p class="loginText">Find and meet entrepreneurs, professionals, and innovators near you.</p>
+<% unless session[:role_id].nil? %>
+  <script type="text/javascript">
+    window.location.href="/roles/index"  // put your correct path in a string here
+  </script>
+<% end %>
+<h1 class="login-header">Find your dream team</h1>
+<p class="login-text">Find and meet entrepreneurs, professionals, and innovators near you.</p>
 
+<h3>Sign in to Foundr</h3>
 <%= render :partial => 'login_form' %>
 
-<p>New to Foundr?  Sign up</p>
-<p class="signup"><%= link_to "Here", :action => "signup", :controller => "roles" %></p>
+<p>New to Foundr?  Sign up
+<%= link_to "here", :action => "signup", :controller => "roles" %>
+</p>
 
+<a href="https://twitter.com/foundrapp" class="twitter-follow-button" data-show-count="false">Follow @foundrapp</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
