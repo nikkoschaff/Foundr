@@ -33,7 +33,7 @@ class RolesController < ApplicationController
             @profile.save!
             redirect_to :action => :index
         else
-            render :action => :new
+            render :action => :signup
         end
     end
 

@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
+  id: 1
+  name: "Build my team"
 
 two:
-  name: MyString
+  id: 2
+  name: "Join a team"
+
+three:
+  id: 3
+  name: "Networking"

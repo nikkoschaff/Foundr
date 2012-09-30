@@ -52,7 +52,7 @@ class RolesControllerTest < ActionController::TestCase
     test "should 401 create" do
         session[:role_id] = nil
 
-        post :create, :role => { :name => "test_user_401",
+        post :create, :role => { :email => "test_user_401",
                                  :password => "unauthorized",
                                  :password_confirm => "unauthorized" }
 
@@ -67,7 +67,7 @@ class RolesControllerTest < ActionController::TestCase
         session[:role_id] = nil
 
         post :update, :id => 1,
-                      :role => { :name => "test_user_401",
+                      :role => { :email => "test_user_401",
                                  :password => "unauthorized",
                                  :password_confirm => "unauthorized" }
 
@@ -109,7 +109,7 @@ class RolesControllerTest < ActionController::TestCase
     test "should 403 authenticate" do
         session[:role_id] = 1
 
-        post :authenticate, :name => "test_user_1",
+        post :authenticate, :email => "test_user_1",
                             :password => "password_1"
 
         assert_response :forbidden
@@ -143,7 +143,7 @@ class RolesControllerTest < ActionController::TestCase
         session[:role_id] = 1
 
         r = Role.all.size
-        hash = { :name => "test_user_create",
+        hash = { :email => "test_user_create",
                  :password => "password_create",
                  :password_confirm => "password_create" }
 
@@ -158,7 +158,7 @@ class RolesControllerTest < ActionController::TestCase
         session[:role_id] = 1
 
         r = Role.all.size
-        hash = { :name => "test_user_create",
+        hash = { :email => "test_user_create",
                  :password => "password_create",
                  :password_confirm => "dont_create" }
 
@@ -188,7 +188,7 @@ class RolesControllerTest < ActionController::TestCase
         session[:role_id] = 1
 
         r = Role.all.size
-        hash = { :name => "test_user_update",
+        hash = { :email => "test_user_update",
                  :password => "password_update",
                  :password_confirm => "password_update" }
 
@@ -204,14 +204,14 @@ class RolesControllerTest < ActionController::TestCase
         session[:role_id] = 1
 
         r = Role.all.size
-        hash = { :name => "test_user_update",
+        hash = { :email => "test_user_update",
                  :password => "password_update",
                  :password_confirm => "dont_update" }
 
         post :update, :id => 2,
                       :role => hash
 
-        hash = { :name => "test_user_2",
+        hash = { :email => "test_user_2",
                  :password => "password_2" }
         assert_response :success
         assert_equal( r, Role.all.size )
@@ -249,7 +249,7 @@ class RolesControllerTest < ActionController::TestCase
     test "should authenticate role" do
         session[:role_id] = nil
 
-        post :authenticate, :name => "test_user_1",
+        post :authenticate, :email => "test_user_1",
                             :password => "password_1"
 
         assert_redirected_to :action => :index
@@ -259,7 +259,7 @@ class RolesControllerTest < ActionController::TestCase
     test "should not authenticate role" do
         session[:role_id] = nil
 
-        post :authenticate, :name => "test_user_1",
+        post :authenticate, :email => "test_user_1",
                             :password => "password_2"
 
         assert_response :success
@@ -278,7 +278,7 @@ class RolesControllerTest < ActionController::TestCase
 private
 
     def assert_role( role, hash )
-        assert_equal( hash[:name], role.name )
+        assert_equal( hash[:email], role.email )
         assert_equal( digest( hash[:password] ), role.password )
     end
 
