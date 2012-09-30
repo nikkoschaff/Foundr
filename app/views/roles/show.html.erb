@@ -28,7 +28,7 @@
 			<strong>Ambitions:</strong>
 		  <p class="show-info">
 		  	<% @role.profile.ambitions.each do |ambition| %>
-		  		<%= ambition %>
+		  		<%= ambition.name %>
 		  		<% unless ambition == @role.profile.ambitions.last %>
 		  		,
 		  		<% end %>

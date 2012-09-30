@@ -24,7 +24,6 @@ private
 
     def role_unauthenticate
         raise RuntimeError if !role_authenticated?
-
         session.delete :role_id
         @role_current = nil
         return true

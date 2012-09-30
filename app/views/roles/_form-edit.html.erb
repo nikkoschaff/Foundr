@@ -1,74 +1,53 @@
-<%= form_for(@role, :validate => true) do |f| %>
-  <% if @role.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this profile from being saved:</h2>
-
-      <ul>
-      <% @role.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for @role do |f| %>
 
   <div class="field">
-    <%= f.label :picture, "Profile Picture" %>
-    <%= f.file_field :picture %>
+    <%= f.label :picture, :as => "Profile Picture" %>
+    <%= f.file_field :picture, :as => "Profile Picture" %>
   </div>
 
-  <%= f.fields_for :profile do |builder| %>
+  <%= f.simple_fields_for :profile do |profile| %>
     <fieldset>
-    <div class="field">
-      <%= builder.label :name %>
-      <%= builder.text_field :name %>
-    </div>
+      <div class="field">
+        <%= profile.input :name %>
+      </div>
     </fieldset>
 
     <fieldset>
-    <div class="field">
-      <%= builder.label :headline %>
-      <%= builder.text_field :headline %>
-    </div>
+      <div class="field">
+        <%= profile.input :headline %>
+      </div>
     </fieldset>
 
     <fieldset>
-     <div class="field">
-      <%= builder.label :about %>
-      <!-- TODO Make text field for about bigger -->
-      <%= builder.text_field :about %>
-    </div>
+      <div class="field">
+        <!-- TODO Make text field for about bigger -->
+        <%= profile.input :about %>
+      </div>
     </fieldset>
 
     <!-- TODO get ambitions to work -->
     <fieldset>
-    <div class="field">
-      <%# @ambitions = Ambition.all %>
-      <%# @ambitions.each do |ambition| %>
-        <%#= builder.check_box ( ambition.name, "yes", @role.profile.ambitions.include(ambition) ) %>
-      <%# end %>
-    </div>
+      <div class="field">
+        <%= profile.association :ambitions, :as => :check_boxes %>
+      </div>
     </fieldset>
 
     <fieldset>
-    <div class="field-about">
-      <%= builder.label :tag_list, "Skills (separated by commas)" %>
-      <%= builder.text_field :tag_list, :size => 150 %>
-    </div>
+      <div class="field-about">
+        <%= profile.input :tag_list, :size => 150 %>
+      </div>
     </fieldset>
 
   <% end %>
 
-
-
   <div class="field">
-  	<%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.input :email, :required => false %>
   </div>
 
   <%= f.hidden_field :password, :value => @role.password  %>
   <%= f.hidden_field :password_confirm, :value => @role.password %>
 
   <div class="actions">
-    <%= f.submit "Update profile", :class => "btn btn-primary" %>
+    <%= f.button :submit, :as => "Update profile", :class => "btn btn-primary" %>
   </div>
 <% end %>

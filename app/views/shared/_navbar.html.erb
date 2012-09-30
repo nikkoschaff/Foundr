@@ -16,7 +16,7 @@
             <li><%= link_to "Edit Profile", :action => "edit", :controller => "roles", :id => session[:role_id] %></li>
             <li><%= link_to "Search", :action => "search", :controller => "roles" %></li>
             <!-- TODO Get logout to work -->
-            <li><%= link_to role_logout_path do %><%= "Logout" %><% end %></li>
+            <li><%= link_to "Logout", :action => "logout", :controller => "roles" %></li>
           </ul>
         </div>
 	<!-- /Logged in -->

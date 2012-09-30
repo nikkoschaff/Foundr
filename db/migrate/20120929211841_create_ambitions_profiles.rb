@@ -4,8 +4,7 @@ class CreateAmbitionsProfiles < ActiveRecord::Migration
       t.integer :ambition_id
       t.integer :profile_id
 
-
-      t.timestamps
+      t.timestamps :null => true, :default => nil
     end
 
     #add_index :ambitions_profiles, :ambition_id
