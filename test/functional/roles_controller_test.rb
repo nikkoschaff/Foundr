@@ -246,6 +246,35 @@ class RolesControllerTest < ActionController::TestCase
         assert_response :success
     end
 
+    test "should post signup" do
+        session[:role_id] = nil
+
+        r = Role.all.size
+        hash = { :name => "test_user_create",
+                 :password => "password_create",
+                 :password_confirm => "password_create" }
+
+        post :signup, :role => hash
+
+        assert_redirected_to :action => :index
+        assert_equal( r + 1, Role.all.size )
+        assert_role( Role.last, hash )
+        assert_equal( Role.last.id, session[:role_id] )
+    end
+  
+    test "should not post signup" do
+        session[:role_id] = nil
+
+        r = Role.all.size
+        hash = { :name => "test_user_create",
+                 :password => "password_create",
+                 :password_confirm => "no_stahhhp" }
+
+        post :signup, :role => hash
+
+        assert_response :success
+        assert_equal( r, Role.all.size )
+    end
     test "should authenticate role" do
         session[:role_id] = nil
 

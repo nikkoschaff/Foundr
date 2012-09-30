@@ -9,7 +9,8 @@ class RolesController < ApplicationController
                                                     :logout ]
     before_filter :filter_unauthenticated, :only => [ :login,
                                                       :authenticate,
-                                                      :signup ]
+                                                      :signup,
+                                                      :signup_post ]
     before_filter :find_role, :only => [ :show,
                                          :edit,
                                          :update,
@@ -46,7 +47,15 @@ class RolesController < ApplicationController
     end
 
     def signup
-        @role = Role.new
+        if params.has_key? :role
+            @role = Role.new( params[:role] )
+            if @role.save
+                self.role_current = @role
+                redirect_to :action => :index
+            end
+        else
+            @role = Role.new
+        end
     end
 
     def logout
