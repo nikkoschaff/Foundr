@@ -8,27 +8,27 @@ class RoleTest < ActiveSupport::TestCase
 
         r = Role.new( :password => "test_password" )
         assert( !r.valid? )
-        assert_equal( [ Role::NAME_PRESENCE_MESSAGE,
-                        Role::NAME_LENGTH_MESSAGE,
-                        Role::NAME_FORMAT_MESSAGE ], r.errors[:email] )
+        assert_equal( [ Role::EMAIL_PRESENCE_MESSAGE,
+                        Role::EMAIL_LENGTH_MESSAGE,
+                        Role::EMAIL_FORMAT_MESSAGE ], r.errors[:email] )
 
         r = Role.new( :email => "aaa",
                       :password => "test_password",
                       :password_confirm => "test_password" )
         assert( !r.valid? )
-        assert_equal( [ Role::NAME_LENGTH_MESSAGE ], r.errors[:email] )
+        assert_equal( [ Role::EMAIL_LENGTH_MESSAGE ], r.errors[:email] )
 
         r = Role.new( :email => "inval?d_format",
                       :password => "test_password",
                       :password_confirm => "test_password" )
         assert( !r.valid? )
-        assert_equal( [ Role::NAME_FORMAT_MESSAGE ], r.errors[:email] )
+        assert_equal( [ Role::EMAIL_FORMAT_MESSAGE ], r.errors[:email] )
 
         r = Role.new( :email => "test_user_1",
                       :password => "test_password",
                       :password_confirm => "test_password" )
         assert( !r.valid? )
-        assert_equal( [ Role::NAME_UNIQUENESS_MESSAGE], r.errors[:email] )
+        assert_equal( [ Role::EMAIL_UNIQUENESS_MESSAGE], r.errors[:email] )
 
         r = Role.new( :email => "test_user_3",
                       :password => "test_password",

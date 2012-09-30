@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
 
-<p><%= image_tag @role.picture_url %></p>
+<!-- TODO profile picture -->
+<p><%#= image_tag @role.picture_url %></p>
 
 <div class="show-info-basic">
 	<div class="show-name">
@@ -11,14 +11,14 @@
 
 	<div class="show-distance">
 		<p class="show-info">
-		  <!-- Helper function for role distance -->
-		  profile_distance( role_current, @role ) miles away
+		  <!-- TODO Helper function for role distance -->
+		  <%#= profile_distance( role_current, @role ) %> miles away
 		</p>
 	</div>
 
 	<div class="show-email">
 		  <p class="show-info">
-		  	<%= @role.profile.email %>
+		  	<%= @role.email %>
 		  </p>
 	</div>
 
@@ -40,7 +40,7 @@
 		<p>
 			<strong>Skills:</strong>
 		  <p class="show-info">
-		  	<%= @role.tag_list.each do |skill| %>
+		  	<%= @role.profile.tag_list.each do |skill| %>
 		  		<%= skill %>
 		  		<% unless skill == @role.profile.tag_list.last %>
 		  		,

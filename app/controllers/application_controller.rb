@@ -52,7 +52,8 @@ private
     end
 
     def filter_forbiden
-        render 'application/forbiden', :status => :forbidden
+        #render 'application/forbiden', :status => :forbidden
+        redirect_to :action => "index", :controller => "roles"
         return false
     end
 

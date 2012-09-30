@@ -26,11 +26,9 @@ class RolesController < ApplicationController
     def create
         @role = Role.new( params[:role] )
         if @role.save!
-            @profile = Profile.create(:about => "", :headline => "", :name => "")
-            @role.profile = @profile
-            @profile.role = @role
+            @role.build_profile(:about => "", :headline => "", :name => "")
+            @role.profile.ambitions = Array.new
             @role.save!
-            @profile.save!
             redirect_to :action => :index
         else
             render :action => :signup

@@ -6,7 +6,7 @@ module RolesHelper
 
     def role_logout_path
         url_for :controller => :roles,
-                :action => :logout
+                :action => :logout, :id => session[:role_id]
     end
 
     def role_authenticate_path

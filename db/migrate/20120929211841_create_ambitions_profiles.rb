@@ -8,8 +8,8 @@ class CreateAmbitionsProfiles < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :ambitions_profiles, :ambition_id
-    add_index :ambitions_profiles, :profile_id
-    add_index :ambitions_profiles, [:ambition_id, :profile_id], unique: true
+    #add_index :ambitions_profiles, :ambition_id
+    #add_index :ambitions_profiles, :profile_id
+    #add_index :ambitions_profiles, [:ambition_id, :profile_id], unique: true
   end
 end

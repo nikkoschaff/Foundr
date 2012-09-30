@@ -14,6 +14,7 @@ class Role < ActiveRecord::Base
     EMAIL_UNIQUENESS_MESSAGE = "email is already taken"
     EMAIL_LENGTH_MESSAGE = "email must be between %i and %i characters" %
                                    [ EMAIL_MINIMUM_LENGTH, EMAIL_MAXIMUM_LENGTH ]
+    
     EMAIL_FORMAT_MESSAGE = "email must follow the given format: name@host.domain"
 
     PASSWORD_LENGTH_MESSAGE = "password must be between %i and %i characters" %
