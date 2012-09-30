@@ -9,21 +9,20 @@
 
 	<% unless session[:role_id].nil? %>
 	<!-- Logged in -->
-	<a class="brand">Foundr<%#= link_to "Foundr", :action => "index", :controller => "roles" %></a>
+	     <%= link_to "Foundr", role_index_path, :class => 'brand', :action => "index", :controller => "roles" %>
         <div class="nav-collapse">
           <ul class="nav">
-	          <li><%= link_to "Home", :action => "index", :controller => "roles" %></li>
-            <li><%= link_to "My Profile", :action => "show", :controller => "roles", :id => session[:role_id] %></li>
+            <li><%= link_to "My Profile", :action => "show", :controller => "roles", :id => session[:role_id] %></li>   
             <li><%= link_to "Edit Profile", :action => "edit", :controller => "roles", :id => session[:role_id] %></li>
             <li><%= link_to "Search", :action => "search", :controller => "roles" %></li>
             <!-- TODO Get logout to work -->
-            <li><%= link_to "Logout", :confirm => "Are you sure you want to log out?" %></li>
+            <li><%= link_to role_logout_path do %><%= "Logout" %><% end %></li>
           </ul>
         </div>
 	<!-- /Logged in -->
 	<% else %>
         <!-- NOT Logged in -->
-        <a class="brand">Foundr<%#= link_to "Foundr", :action => "login", :controller => "roles" %></a>
+        <%= link_to "Foundr", role_login_path, :class => 'brand', :action => "login", :controller => "roles" %>
         <div class="nav-collapse">
           <ul class="nav">
             <li><%= link_to "Sign in", :action => "login", :controller => "roles" %></li>

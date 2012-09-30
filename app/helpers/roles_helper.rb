@@ -18,4 +18,9 @@ module RolesHelper
         url_for :controller => :roles,
                 :action => :signup
     end
+
+    def role_index_path
+        url_for :controller => :roles,
+                :action => :index
+    end
 end
