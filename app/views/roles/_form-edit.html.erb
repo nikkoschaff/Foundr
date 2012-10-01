@@ -19,13 +19,11 @@
     </fieldset>
 
     <fieldset>
-      <div class="field">
-        <!-- TODO Make text field for about bigger -->
+      <div class="field-about">
         <%= profile.input :about %>
       </div>
     </fieldset>
 
-    <!-- TODO get ambitions to work -->
     <fieldset>
       <div class="field">
         <%= profile.association :ambitions, :as => :check_boxes %>
@@ -33,7 +31,7 @@
     </fieldset>
 
     <fieldset>
-      <div class="field-about">
+      <div class="field-skills">
         <%= profile.input :tag_list, :size => 150 %>
       </div>
     </fieldset>

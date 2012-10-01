@@ -27,9 +27,6 @@ class RolesController < ApplicationController
     def create
         @role = Role.new( params[:role] )
         if @role.save!
-            @role.build_profile(:about => "", :headline => "", :name => "")
-            @role.profile.ambitions = Array.new
-            @role.save!
             redirect_to :action => :index
         else
             render :action => :signup
@@ -52,6 +49,7 @@ class RolesController < ApplicationController
     def signup
         if params.has_key? :role
             @role = Role.new( params[:role] )
+            @role.build_profile(:about => "", :headline => "", :name => "")
             if @role.save
                 self.role_current = @role
                 redirect_to :action => :index

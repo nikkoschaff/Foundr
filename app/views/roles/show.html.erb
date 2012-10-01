@@ -1,6 +1,6 @@
 
 <div class="show-picture">
-	<p><%= image_tag @role.picture_url %></p>
+	<p><%= image_tag @role.picture_url if @role.picture? %></p>
 </div>
 
 <div class="show-info-basic">
@@ -13,7 +13,7 @@
 	<div class="show-distance">
 		<p class="show-info">
 		  <!-- TODO Helper function for role distance -->
-		  <%#= profile_distance( role_current, @role ) %> miles away
+		  <%#= profile_distance( role_current, @role ) %>(x) miles away
 		</p>
 	</div>
 
