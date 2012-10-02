@@ -52,6 +52,7 @@ class RolesController < ApplicationController
 
     def signup
         if params.has_key? :role
+            params[:role][:email].downcase
             @role = Role.new( params[:role] )
             @role.build_profile(:about => "", :headline => "", :name => "")
             if @role.save
@@ -69,7 +70,7 @@ class RolesController < ApplicationController
     end
 
     def authenticate
-        if role_authenticate( params[:email], params[:password] )
+        if role_authenticate( params[:email].downcase, params[:password] )
             redirect_to :action => :index
         else
             render :action => :login

@@ -55,6 +55,9 @@ class Role < ActiveRecord::Base
         end 
     end
 
+    before_save { |role| role.email = role.email.downcase }
+
+
 private
 
     def password_nil?
