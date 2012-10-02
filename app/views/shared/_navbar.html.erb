@@ -14,7 +14,7 @@
           <ul class="nav">
             <li><%= link_to "My Profile", :action => "show", :controller => "roles", :id => session[:role_id] %></li>   
             <li><%= link_to "Edit Profile", :action => "edit", :controller => "roles", :id => session[:role_id] %></li>
-            <li><%= link_to "Search", :action => "search", :controller => "roles" %></li>
+            <li><%= link_to "Search", role_search_path, :method => :search %></li>
             <!-- TODO Get logout to work -->
             <li><%= link_to "Logout", role_logout_path, :method => :logout %></li>
           </ul>

@@ -9,12 +9,15 @@ Foundr::Application.routes.draw do
 
     
   get 'roles/login' => 'roles#login'
+  post 'roles/login' => 'roles#login'
   get 'roles/signup' => 'roles#signup'
   post 'roles/signup' => 'roles#signup'
   post 'roles/authenticate' => 'roles#authenticate'
-  #get 'roles/show' => 'roles#show'
+  get 'roles/show' => 'roles#show'
   post 'roles/logout' => 'roles#logout'
   get 'roles/search' => 'roles#search'
+  post 'roles/search' => 'roles#search'
   get 'tags/:tag', to: 'roles#index', as: :tag
+
 
 end

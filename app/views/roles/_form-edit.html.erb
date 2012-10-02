@@ -1,8 +1,8 @@
 <%= simple_form_for @role do |f| %>
 
   <div class="field">
-    <%= f.label :picture, :as => "Profile Picture" %>
-    <%= f.file_field :picture, :as => "Profile Picture" %>
+    <%= f.label :picture, :label => "Profile Picture" %>
+    <%= f.file_field :picture, :as => "Profile Picture", :label => "Profile Picture" %>
   </div>
 
   <%= f.simple_fields_for :profile do |profile| %>
@@ -19,8 +19,8 @@
     </fieldset>
 
     <fieldset>
-      <div class="field-about">
-        <%= profile.input :about %>
+      <div class="field">
+        <%= profile.input :about, :input_html => {:maxlength => 140, :size => 100 } %>
       </div>
     </fieldset>
 
@@ -31,8 +31,8 @@
     </fieldset>
 
     <fieldset>
-      <div class="field-skills">
-        <%= profile.input :tag_list, :size => 150 %>
+      <div class="field">
+        <%= profile.input :tag_list, :size => 150, :label => "Skills (separated by commas)" %>
       </div>
     </fieldset>
 

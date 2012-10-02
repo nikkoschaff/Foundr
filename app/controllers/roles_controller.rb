@@ -6,7 +6,8 @@ class RolesController < ApplicationController
                                                     :create,
                                                     :update,
                                                     :destroy,
-                                                    :logout ]
+                                                    :logout,
+                                                    :search ]
     before_filter :filter_unauthenticated, :only => [ :login,
                                                       :authenticate,
                                                       :signup,
@@ -18,6 +19,9 @@ class RolesController < ApplicationController
 
     def index
         @roles = Role.all
+        # TODO get filters to work
+        #filtered_roles = role_filter( params[:filters][:tag_list], params[:filters][:ambitions], @roles )
+        #@roles = filtered_roles
     end
 
     def new
@@ -72,6 +76,12 @@ class RolesController < ApplicationController
         end
     end
 
+    def search
+        # TODO accept filters, parse, send
+        filters = Hash.new
+        #filters[:params] = params
+        #redirect_to :action => :index, :filters => filters
+    end
 
 
 private

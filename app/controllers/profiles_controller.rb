@@ -47,6 +47,7 @@ class ProfilesController < ApplicationController
         @geolocation = Geolocation.new
         @profile.geolocation = @geolocation
         @geolocation.profile = @profile
+        @geolocation.profile_id = @profile.id
         @profile.save!
         @geolocation.save!
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }

@@ -39,30 +39,6 @@ module ProfilesHelper
 		miles
 	end
 
-	def profile_filter( skills, ambitions, profiles = Array.new )
-		good_profiles = Array.new
-
-		profiles.each do |profile| 
-			match = true
-			#Remove all where ambitions don't match
-			ambitions.each do |ambition|
-				unless profile.ambitions.include?(ambition)
-					match = false
-				end
-			end
-			#Remove all where skills don't match
-			skills.each do |skill| 
-				unless profile.tag_list.include?(skill)
-					match = false
-				end
-			end
-			if match
-				good_profiles.push(profile)
-			end
-		end
-		good_profiles
-	end
-
 
 	# Radius in KM
 	def profile_find_nearest( profile, radius )
