@@ -1,6 +1,7 @@
 <%= simple_form_for @role do |f| %>
 
   <div class="field">
+    <%= image_tag(@role.picture_url) if @role.picture? %>
     <%= f.label :picture, :label => "Profile Picture" %>
     <%= f.file_field :picture, :as => "Profile Picture", :label => "Profile Picture" %>
   </div>
