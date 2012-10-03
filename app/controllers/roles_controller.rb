@@ -66,7 +66,7 @@ class RolesController < ApplicationController
 
     def logout
         role_unauthenticate
-        redirect_to :action => :login
+        redirect_to :action => :login, :method => :login
     end
 
     def authenticate
@@ -82,6 +82,12 @@ class RolesController < ApplicationController
         filters = Hash.new
         #filters[:params] = params
         #redirect_to :action => :index, :filters => filters
+    end
+
+    def login
+        if role_authenticated?
+            redirect_to :action => "index", :controller => "roles"
+        end
     end
 
 

@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery
 
+    # Root url
+    def find_root_url
+        if role_authenticated?
+            redirect_to :action => "index", :controller => "roles"
+        else
+            redirect_to :action => "login", :controller => "roles"
+        end
+    end
+
 private
 
     def role_authenticated?
