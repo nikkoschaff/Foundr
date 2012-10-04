@@ -6,6 +6,8 @@ Foundr::Application.routes.draw do
       get 'login'
       post 'login'
       post 'authenticate'
+      get   'search'
+      post  'search'
     end
   end
   resources :profiles

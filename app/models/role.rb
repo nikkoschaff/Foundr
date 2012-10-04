@@ -45,9 +45,14 @@ class Role < ActiveRecord::Base
     validate :confirm_password, :unless => :password_nil?
 
     before_save :encrypt_password
+    before_save { |role| role.email = role.email.downcase }
 
     def self.authenticate( email, password )
         role = find_by_email( email )
+        Rails.logger.info("PASS - ME #{password}")
+        Rails.logger.info("PASS - DB #{role.password}")
+        Rails.logger.info("PASS - ME (DIGEST) #{Role.digest(Role.digest(password))}")
+        Rails.logger.info("PASS - DB (DIGEST) #{Role.digest(role.password)}")        
         if role and role.password == Role.digest( password )
             role
         else
@@ -55,7 +60,46 @@ class Role < ActiveRecord::Base
         end 
     end
 
-    before_save { |role| role.email = role.email.downcase }
+    # Filter used when search is called
+    def self.search( search )
+        if search
+            # TODO
+            find(:all)#, :conditions => ['name LIKE ?', "%#{search}%"])
+        else
+            find(:all)
+        end
+=begin
+
+        good_profiles = Array.new
+
+        profiles.each do |profile| 
+            match = true
+            #Remove all where ambitions don't match
+            unless ambitions.nil?
+                ambitions.each do |ambition|
+                    unless profile.ambitions.include?(ambition)
+                        match = false
+                    end
+                end
+            end
+
+            unless skills.nil?
+                #Remove all where skills don't match
+                skills.each do |skill| 
+                    unless profile.tag_list.include?(skill)
+                        match = false
+                    end
+                end
+            end
+
+            if match
+                good_profiles.push(profile)
+            end
+        end
+        good_profiles
+=end
+    end
+
 
 
 private

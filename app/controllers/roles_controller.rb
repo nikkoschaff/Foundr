@@ -18,10 +18,7 @@ class RolesController < ApplicationController
                                          :destroy ]
 
     def index
-        @roles = Role.all
-        # TODO get filters to work
-        #filtered_roles = role_filter( params[:filters][:tag_list], params[:filters][:ambitions], @roles )
-        #@roles = filtered_roles
+        @roles = Role.search(params[:search])
     end
 
     def new
@@ -52,7 +49,6 @@ class RolesController < ApplicationController
 
     def signup
         if params.has_key? :role
-            params[:role][:email].downcase
             @role = Role.new( params[:role] )
             @role.build_profile(:about => "", :headline => "", :name => "")
             if @role.save
@@ -78,10 +74,9 @@ class RolesController < ApplicationController
     end
 
     def search
-        # TODO accept filters, parse, send
         filters = Hash.new
-        #filters[:params] = params
-        #redirect_to :action => :index, :filters => filters
+        filters[:params] = params
+        #redirect_to :action => :index, :filters => filters, :method => :index
     end
 
     def login
