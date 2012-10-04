@@ -48,11 +48,7 @@ class Role < ActiveRecord::Base
     before_save { |role| role.email = role.email.downcase }
 
     def self.authenticate( email, password )
-        role = find_by_email( email )
-        Rails.logger.info("PASS - ME #{password}")
-        Rails.logger.info("PASS - DB #{role.password}")
-        Rails.logger.info("PASS - ME (DIGEST) #{Role.digest(Role.digest(password))}")
-        Rails.logger.info("PASS - DB (DIGEST) #{Role.digest(role.password)}")        
+        role = find_by_email( email )    
         if role and role.password == Role.digest( password )
             role
         else
