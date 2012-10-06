@@ -24,7 +24,7 @@ class Geolocation < ActiveRecord::Base
 
 	# Find distance between two points based on a spherical Earth
 	# Copy of one from Grid, used here for convenience
-	def self.geolocation_haversine_distance( user_id, other_id )
+	def self.haversine_distance( user_id, other_id )
 		user = Geolocation.find(Role.find(user_id).profile_id)
 		other = Geolocation.find(Role.find(other_id).profile_id)
 		lat1 = user.latitude
@@ -47,8 +47,7 @@ class Geolocation < ActiveRecord::Base
 		c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a))
 		dKm = rkm * c             # delta in kilometers
 		dKm
-
-		
+		dMi = (0.621371 * dKm).round(1)
 	end	
 
 end

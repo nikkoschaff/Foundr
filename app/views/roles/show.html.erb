@@ -12,7 +12,7 @@
 
 	<div class="show-distance">
 		<p class="show-info">
-		  <%= number_with_precision( 0.621371 * Geolocation.geolocation_haversine_distance( session[:role_id], @role.id ), :precision => 1 ) %> miles away
+		  <%= Geolocation.haversine_distance( session[:role_id], @role.id ) %> miles away
 		</p>
 	</div>
 
