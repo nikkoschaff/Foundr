@@ -3,7 +3,7 @@
 <%= form_tag role_index_path, :method => :post do %>
 
   <div class="field">
-    <%= label_tag :ambitions, "Ambitions" %><br />
+    <%= label_tag :ambition_ids, "Ambitions" %><br />
     <% @ambitions = Ambition.all %>
     <% @ambitions.each do |ambition| %>
       <br />

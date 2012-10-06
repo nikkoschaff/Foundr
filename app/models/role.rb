@@ -56,17 +56,6 @@ class Role < ActiveRecord::Base
         end 
     end
 
-    # Calls geolocation search and filters if search params exist
-    def self.search( params )
-        role_ids = Geolocation.find_nearest(params[:limit], params[:max_distance], params[:role_id])
-        roles = Array.new
-        role_ids.each do |id|
-            roles.push(Role.find(id))
-        end
-        filter(:roles => roles, :search => params[:search])
-    end
-
-
 private
 
     def password_nil?
@@ -85,42 +74,6 @@ private
 
     def self.digest( source )
         Digest::SHA2.base64digest( source )
-    end
-
-
-    # Filters results based on search params
-    # TODO finish   
-    def filter( params )
-        roles = params[:roles]
-        good_roles = Array.new   
-        good_roles = roles     
-=begin
-        profiles.each do |profile| 
-            match = true
-            #Remove all where ambitions don't match
-            unless ambitions.nil?
-                ambitions.each do |ambition|
-                    unless profile.ambitions.include?(ambition)
-                        match = false
-                    end
-                end
-            end
-
-            unless skills.nil?
-                #Remove all where skills don't match
-                skills.each do |skill| 
-                    unless profile.tag_list.include?(skill)
-                        match = false
-                    end
-                end
-            end
-
-            if match
-                good_profiles.push(profile)
-            end
-        end
-=end
-        good_roles
     end
 
 end

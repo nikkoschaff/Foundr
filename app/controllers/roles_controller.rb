@@ -18,18 +18,20 @@ class RolesController < ApplicationController
                                          :destroy ]
 
     def index
-        # TODO make conditions so it doesn't load every time
-
-        #TODO actually find geolocation with html5
-
-        #TODO refresh feature
-
-        # TODO change limit 
-        # TODO change max distance
-        @roles = Role.search(:search => params[:search],
-                             :role_id => session[:role_id],
-                             :limit => 20,
-                             :max_distance => 100 )
+        @tag_list = nil
+        @ambition_ids = nil
+        if params.has_key?(:tag_list)
+            @tag_list = params[:tag_list]
+        end
+        if params.has_key?(:ambition_ids)
+            @ambition_ids = params[:ambition_ids]
+        end
+        # TODO (when ready) let jquery handle this part
+        @roles = nil
+        #@roles = Geolocation.search(:search => params[:search],
+        #                     :role_id => session[:role_id],
+        #                     :limit => 20,
+        #                     :max_distance => 100 )
     end
 
     def new
@@ -62,6 +64,7 @@ class RolesController < ApplicationController
         if params.has_key? :role
             @role = Role.new( params[:role] )
             @role.build_profile(:about => "", :headline => "", :name => "")
+            @role.build_geolocation(:accuracy => -1.0, :latitude => 0.0, :longitude => 0.0, :profile_id => 0.0)
             if @role.save
                 self.role_current = @role
                 redirect_to :action => :index
@@ -82,12 +85,6 @@ class RolesController < ApplicationController
         else
             render :action => :login
         end
-    end
-
-    def search
-        filters = Hash.new
-        filters[:params] = params
-        #redirect_to :action => :index, :filters => filters, :method => :index
     end
 
     def login

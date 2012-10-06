@@ -1,0 +1,51 @@
+
+
+<p id="demo">Click the button to get your coordinates:</p>
+<button onclick="getLocation()">Load more users</button>
+<script>
+	var x=document.getElementById("demo");
+	function getLocation()
+	  {
+	  if (navigator.geolocation)
+	    {
+	    navigator.geolocation.getCurrentPosition(refresh,showError);
+	    }
+	  else{x.innerHTML="Geolocation is not supported by this browser.";}
+	  }
+	function showError(error)
+	  {
+	  switch(error.code) 
+	    {
+	    case error.PERMISSION_DENIED:
+	      x.innerHTML="User denied the request for Geolocation."
+	      break;
+	    case error.POSITION_UNAVAILABLE:
+	      x.innerHTML="Location information is unavailable."
+	      break;
+	    case error.TIMEOUT:
+	      x.innerHTML="The request to get user location timed out."
+	      break;
+	    case error.UNKNOWN_ERROR:
+	      x.innerHTML="An unknown error occurred."
+	      break;
+	    }
+	  }
+
+	  // TODO add jquery to send data
+	  // TODO use ambition_ids and tag_list in call
+	  /**
+	   * Pseudocode:
+	   # params (limit = 0, distance = 0) - can be adjusted with each call
+	   * ADDITIONAL_LIMIT = 20 (users)
+	   * ADDITIONAL_DISTANCE = 2.0 (km) (for each extra call)
+	   * ajax call with limit and distance
+	   * -> each call increments LIMIT by 20 and DISTANCE by 2km and calls again
+	   * -> Result of call will be role_ids, an array of role_ids
+	   *
+	  **/
+	  function refresh(position)
+	  {
+	  x.innerHTML="Latitude: " + position.coords.latitude + 
+	  "<br>Longitude: " + position.coords.longitude;	
+	  }
+</script>

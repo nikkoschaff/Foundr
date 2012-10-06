@@ -1,25 +1,27 @@
 class Geolocation < ActiveRecord::Base
-  attr_accessible :accuracy, :latitude, :longitude, :profile_id
+  attr_accessible :accuracy, :latitude, :longitude, :role_id
 
-  has_one :profile
+  has_one :role
 
-  # TODO change from profile id to role id
-  validates_uniqueness_of :profile_id
+  validates_uniqueness_of :role_id
 
   	# Finds nearest locations within max distance and limit of location at role
 	# limit => max number allowed
 	# max_distance => minimum distance in km
 	# role_id => id of current sessions role
 	# Return: Array of role ids
-	def self.find_nearest(limit, max_distance, role_id)
-		current_role = Role.find(role_id)
-		current_geolocation = Geolocation.where("profile_id=?",current_role.id).last
-		# TODO new...?  Probably where I interact with sockets....
-		#grid = Grid.new
-		#grid.find_nearest( limit, max_distance, role_id,
-		#				 current_geolocation.latitude,
-		#				 current_geolocation.longitude )
+	def self.nearest_role_ids(limit, max_distance, role_id, ambitions=nil, tag_list=nil)
+		current_geolocation = Geolocation.at(role_id)
+		# TODO implement later with sockets
+		grid = Grid.new
+		# TODO search filtering
+		grid.nearest_role_ids( limit, max_distance, role_id,
+						 current_geolocation.latitude,
+						 current_geolocation.longitude,
+						 ambitions, tag_list )
 	end
+
+	# TODO function to build grid by creating array of "locations" and adding geoloc and profile params
 
 
 	# Find distance between two points based on a spherical Earth
