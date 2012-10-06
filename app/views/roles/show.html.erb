@@ -12,8 +12,7 @@
 
 	<div class="show-distance">
 		<p class="show-info">
-		  <!-- TODO Helper function for role distance -->
-		  <%#= profile_distance( role_current, @role ) %>(x) miles away
+		  <%= number_with_precision( Geolocation.geolocation_haversine_distance( session[:role_id], @role.id ), :precision => 1 ) %> miles away
 		</p>
 	</div>
 

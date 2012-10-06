@@ -18,7 +18,18 @@ class RolesController < ApplicationController
                                          :destroy ]
 
     def index
-        @roles = Role.search(params[:search])
+        # TODO make conditions so it doesn't load every time
+
+        #TODO actually find geolocation with html5
+
+        #TODO refresh feature
+
+        # TODO change limit 
+        # TODO change max distance
+        @roles = Role.search(:search => params[:search],
+                             :role_id => session[:role_id],
+                             :limit => 20,
+                             :max_distance => 100 )
     end
 
     def new

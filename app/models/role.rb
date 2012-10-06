@@ -56,18 +56,45 @@ class Role < ActiveRecord::Base
         end 
     end
 
-    # Filter used when search is called
-    def self.search( search )
-        if search
-            # TODO
-            find(:all)#, :conditions => ['name LIKE ?', "%#{search}%"])
-        else
-            find(:all)
+    # Calls geolocation search and filters if search params exist
+    def self.search( params )
+        role_ids = Geolocation.find_nearest(params[:limit], params[:max_distance], params[:role_id])
+        roles = Array.new
+        role_ids.each do |id|
+            roles.push(Role.find(id))
         end
+        filter(:roles => roles, :search => params[:search])
+    end
+
+
+private
+
+    def password_nil?
+        password.nil?
+    end
+
+    def confirm_password
+        if password != password_confirm
+            errors.add( :password, CONFIRM_PASSWORD_MESSAGE )
+        end
+    end
+
+    def encrypt_password
+        self.password = Role.digest( password )
+    end
+
+    def self.digest( source )
+        Digest::SHA2.base64digest( source )
+    end
+
+
+    # Filters results based on search params
+    # TODO finish   
+    def filter( params )
+        roles = params[:roles]
+        good_roles = Array.new   
+        good_roles = roles     
 =begin
-
-        good_profiles = Array.new
-
         profiles.each do |profile| 
             match = true
             #Remove all where ambitions don't match
@@ -92,30 +119,8 @@ class Role < ActiveRecord::Base
                 good_profiles.push(profile)
             end
         end
-        good_profiles
 =end
-    end
-
-
-
-private
-
-    def password_nil?
-        password.nil?
-    end
-
-    def confirm_password
-        if password != password_confirm
-            errors.add( :password, CONFIRM_PASSWORD_MESSAGE )
-        end
-    end
-
-    def encrypt_password
-        self.password = Role.digest( password )
-    end
-
-    def self.digest( source )
-        Digest::SHA2.base64digest( source )
+        good_roles
     end
 
 end
