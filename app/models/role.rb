@@ -27,6 +27,8 @@ class Role < ActiveRecord::Base
     attr_accessor :password_confirm
 
     has_one :profile
+    has_one :geolocation
+    accepts_nested_attributes_for :geolocation
     accepts_nested_attributes_for :profile
 
     validates :email, :presence => { :message => EMAIL_PRESENCE_MESSAGE }

@@ -44,12 +44,6 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        @geolocation = Geolocation.new(:accuracy => -1.0, :latitude => 0.0, :longitude => 0.0, :profile_id => 0.0)
-        @profile.geolocation = @geolocation
-        @geolocation.profile = @profile
-        @geolocation.profile_id = @profile.id
-        @profile.save!
-        @geolocation.save!
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
       else

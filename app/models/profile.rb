@@ -2,7 +2,6 @@ class Profile < ActiveRecord::Base
     attr_accessible :about, :name, :headline, :tag_list, :ambitions_attributes, :ambition_ids
     acts_as_taggable
 
-    has_one :geolocation
     has_one :role
 
 

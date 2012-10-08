@@ -1,6 +1,5 @@
 
-
-<p id="demo">Click the button to get your coordinates:</p>
+<p id="demo">
 <button onclick="getLocation()">Load more users</button>
 <script>
 	var x=document.getElementById("demo");
@@ -45,7 +44,10 @@
 	  **/
 	  function refresh(position)
 	  {
-	  x.innerHTML="Latitude: " + position.coords.latitude + 
-	  "<br>Longitude: " + position.coords.longitude;	
+	  x.innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;	
 	  }
 </script>
+
+<!-- TODO use jquery to set fields after refresh -->
+
+<%= link_to "Refresh", role_index_path, :accuracy => nil, :latitude => nil, :longitude => nil %>

@@ -18,6 +18,19 @@ class RolesController < ApplicationController
                                          :destroy ]
 
 
+    def index
+        if params[:latitude].nil? or params[:longitude].nil or params[:accuracy].nil?
+            @roles = nil
+        else
+            geoloc = Geolocation.where("role_id=?",session[:role_id]).first
+            geoloc.accuracy = params[:accuracy]
+            geoloc.latitude = params[:latitude]
+            geoloc.longitude = params[:longitude]
+            geoloc.save!
+            @roles = Geolocation.nearest_roles( 20, 15.5, session[:role_id] )
+        end
+    end
+
     # Returns a list of (TODO determine) role objects as @roles
     # TODO
     def refresh
@@ -30,7 +43,7 @@ class RolesController < ApplicationController
             @ambition_ids = params[:ambition_ids]
         end
         # TODO (when ready) let jquery handle this part
-        @roles = nil
+        @roles = Geolocation.nearest_roles
         #@roles = Geolocation.search(:search => params[:search],
         #                     :role_id => session[:role_id],
         #                     :limit => 20,
@@ -67,6 +80,8 @@ class RolesController < ApplicationController
         if params.has_key? :role
             @role = Role.new( params[:role] )
             @role.build_profile(:about => "", :headline => "", :name => "")
+            @role.build_geolocation(:accuracy => 0.0,
+             :latitude => 0.0, :longitude => 0.0, :role_id => @role.id )
             if @role.save
                 @role.encrypt_password
                 @role.save!
