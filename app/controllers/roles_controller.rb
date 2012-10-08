@@ -17,7 +17,10 @@ class RolesController < ApplicationController
                                          :update,
                                          :destroy ]
 
-    def index
+
+    # Returns a list of (TODO determine) role objects as @roles
+    # TODO
+    def refresh
         @tag_list = nil
         @ambition_ids = nil
         if params.has_key?(:tag_list)
@@ -64,8 +67,9 @@ class RolesController < ApplicationController
         if params.has_key? :role
             @role = Role.new( params[:role] )
             @role.build_profile(:about => "", :headline => "", :name => "")
-            @role.build_geolocation(:accuracy => -1.0, :latitude => 0.0, :longitude => 0.0, :profile_id => 0.0)
             if @role.save
+                @role.encrypt_password
+                @role.save!
                 self.role_current = @role
                 redirect_to :action => :index
             end

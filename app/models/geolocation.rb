@@ -22,6 +22,7 @@ class Geolocation < ActiveRecord::Base
 	end
 
 	# TODO function to build grid by creating array of "locations" and adding geoloc and profile params
+	
 
 
 	# Find distance between two points based on a spherical Earth

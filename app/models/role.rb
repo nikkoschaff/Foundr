@@ -44,16 +44,26 @@ class Role < ActiveRecord::Base
 
     validate :confirm_password, :unless => :password_nil?
 
-    before_save :encrypt_password
     before_save { |role| role.email = role.email.downcase }
 
     def self.authenticate( email, password )
         role = find_by_email( email )    
+        if role
+            Rails.logger.info("PASS - ME: #{password}")
+            Rails.logger.info("PASS - DB: #{role.password}")
+            Rails.logger.info("PASS - ME DIGEST: #{Role.digest(password)}")
+            Rails.logger.info("PASS - DB DIGEST: #{Role.digest(role.password)}")            
+        end
+
         if role and role.password == Role.digest( password )
             role
         else
             nil
         end 
+    end
+
+    def encrypt_password
+        self.password = Role.digest( password )
     end
 
 private
@@ -63,14 +73,14 @@ private
     end
 
     def confirm_password
-        if password != password_confirm
-            errors.add( :password, CONFIRM_PASSWORD_MESSAGE )
+        if password != Role.digest( password_confirm )
+            if password != password_confirm
+                errors.add( :password, CONFIRM_PASSWORD_MESSAGE )
+            end
         end
     end
 
-    def encrypt_password
-        self.password = Role.digest( password )
-    end
+
 
     def self.digest( source )
         Digest::SHA2.base64digest( source )
