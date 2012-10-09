@@ -19,37 +19,17 @@ class RolesController < ApplicationController
 
 
     def index
-        #@roles = Role.order("email").page(params[:page]).per_page(10)
-#        if params[:latitude].nil? or params[:longitude].nil or params[:accuracy].nil?
-#            @roles = nil
-#        else
-            #geoloc = Geolocation.where("role_id=?",session[:role_id]).first
- #           geoloc.accuracy = params[:accuracy]
- #           geoloc.latitude = params[:latitude]
- #           geoloc.longitude = params[:longitude]
- #           geoloc.save!
-            @roles = Geolocation.nearest_roles( 20, 15.5, session[:role_id] )
-           # @roles = @roles.paginate( :page => params[:page], :per_page => 10)
-#       end
+        @roles = Geolocation.nearest_roles( 20, 15.5, session[:role_id] )
     end
 
-    # Returns a list of (TODO determine) role objects as @roles
-    # TODO
     def refresh
-        @tag_list = nil
-        @ambition_ids = nil
-        if params.has_key?(:tag_list)
-            @tag_list = params[:tag_list]
-        end
-        if params.has_key?(:ambition_ids)
-            @ambition_ids = params[:ambition_ids]
-        end
-        # TODO (when ready) let jquery handle this part
-        @roles = Geolocation.nearest_roles
-        #@roles = Geolocation.search(:search => params[:search],
-        #                     :role_id => session[:role_id],
-        #                     :limit => 20,
-        #                     :max_distance => 100 )
+        geoloc = Geolocation.where("role_id=?",session[:role_id]).first
+        Geolocation.update(geoloc.id, :latitude => params[:latitude],
+                                      :longitude => params[:longitude])     
+        @roles = Geolocation.nearest_roles( 
+            :limit => params[:limit],
+            :max_distance => params[:max_distance], 
+            :role_id => session[:role_id])
     end
 
     def new
