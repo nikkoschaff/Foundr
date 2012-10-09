@@ -82,8 +82,7 @@ class RolesController < ApplicationController
         if params.has_key? :role
             @role = Role.new( params[:role] )
             @role.build_profile(:about => "", :headline => "", :name => "")
-            @role.build_geolocation(:accuracy => 0.0,
-             :latitude => 0.0, :longitude => 0.0, :role_id => @role.id )
+            @role.build_geolocation(:latitude => 0.0, :longitude => 0.0, :role_id => @role.id)
             if @role.save
                 @role.encrypt_password
                 @role.save!

@@ -1,5 +1,5 @@
 class Geolocation < ActiveRecord::Base
-  attr_accessible :accuracy, :latitude, :longitude, :role_id
+  attr_accessible :latitude, :longitude, :role_id
 
   has_one :role
 
