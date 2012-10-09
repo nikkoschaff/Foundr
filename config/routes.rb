@@ -8,6 +8,8 @@ Foundr::Application.routes.draw do
       post 'authenticate'
       get   'search'
       post  'search'
+      get 'refresh'
+      post 'refresh'
     end
   end
   resources :profiles

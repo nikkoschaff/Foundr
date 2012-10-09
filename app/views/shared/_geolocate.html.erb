@@ -48,7 +48,7 @@
 	  function refreshCall(position)
 	  {
 	  	x.innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;	
-	  	$('role').html("<%= escape_javascript(render 'role', roles: @roles) %>");
+	  	$('#role').html("<%= escape_javascript(render :partial => 'role', roles: @roles) %>");
 	  }
 
 	  function refreshResult()
