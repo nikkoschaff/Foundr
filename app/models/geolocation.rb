@@ -10,7 +10,7 @@ class Geolocation < ActiveRecord::Base
 	# max_distance => minimum distance in km
 	# role_id => id of current sessions role
 	# Return: Array of role ids
-	def self.nearest_roles
+	def self.nearest_roles(limit, max_distance, role_id)
 		# TODO implement later with sockets
 		#grid = Grid.new
 		# TODO search filtering
@@ -23,8 +23,8 @@ class Geolocation < ActiveRecord::Base
 		# => sort by distance, cut off after distance > max_distance
 
 		# --- NOT SCALABLE IN THE SLIGHTEST!!!!! ---
-		current = Geolocation.where("role_id=?",params[:role_id]).last
-		locations = Geolocation.find( :all, :conditions => ["id!=?",params[:role_id]] )
+		current = Geolocation.where("role_id=?",role_id).last
+		locations = Geolocation.find( :all, :conditions => ["id!=?",role_id] )
 		locations_with_distance = []
 
 		# Find distance from center for each location
@@ -36,7 +36,7 @@ class Geolocation < ActiveRecord::Base
 		sorted_locations = locations_with_distance.sort_by { |loc| loc[:distance] }
 		@roles = []
 		sorted_locations.each do |loc|
-			if loc[:distance] > params[:max_distance] or @roles.limit >= params[:limit]
+			if loc[:distance] > max_distance or @roles.size >= limit
 				break
 			else
 				@roles.push(Role.find(loc[:id]))
