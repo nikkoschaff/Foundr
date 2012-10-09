@@ -21,11 +21,15 @@ class Geolocation < ActiveRecord::Base
 
 		# CURRENT ALGORITHM - Retrieve all DB entries, haversine distance for relative distance
 		# => sort by distance, cut off after distance > max_distance
+		max_distance = max_distance.to_i
+		limit = limit.to_i
+
 
 		# --- NOT SCALABLE IN THE SLIGHTEST!!!!! ---
 		current = Geolocation.where("role_id=?",role_id).last
 		locations = Geolocation.find( :all, :conditions => ["id!=?",role_id] )
 		locations_with_distance = []
+
 
 		# Find distance from center for each location
 		locations.each do |loc|

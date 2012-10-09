@@ -1,11 +1,13 @@
 
 <p id="demo">
+<button class="refreshButton" onClick="getLocation()">Load more users</button>
 <script>
 
+	var lim = 0
+	var max_dist = 0
 	// Call getLocation when the page loads
 	$(document).ready(getLocation)
 
-	// TODO remove the button and make this call when page is loaded
 	var x=document.getElementById("demo");
 	function getLocation()
 	  {
@@ -34,23 +36,22 @@
 	    }
 	  }
 
-	  // TODO call with ajax
 	  /**
-	   * Pseudocode:
-	   # params (limit = 0, distance = 0) - can be adjusted with each call
-	   * ADDITIONAL_LIMIT = 20 (users)
-	   * ADDITIONAL_DISTANCE = 2.0 (km) (for each extra call)
-	   * ajax call with limit and distance
+	   * ajax call with limit and distance to load role partial
 	   * -> each call increments LIMIT by 20 and DISTANCE by 2km and calls again
-	   * -> Result of call will be role_ids, an array of role_ids
-	   *
 	  **/
 	  function refreshCall(position)
 	  {
-	  	x.innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;	
-	  	$('#role').html("<%= escape_javascript(render :partial => 'role', roles: @roles) %>");
+	  	if (max_dist < 15) {
+	  		max_dist += 5;
+	  	}
+	  	lim += 20
+	  	"<% @roles = [] %>"
+	  	$.ajax({ type: "POST", url: "<%= role_refresh_path %>", data: { limit: lim, max_distance: max_dist, latitude: position.coords.latitude, longitude: position.coords.longitude }
+	  			}).done(function(html) {
+	  				$(".role").empty();
+	  				$(".role").append(html);
+	  			});
 	  }
 
-	  function refreshResult()
-	  {}
 </script>

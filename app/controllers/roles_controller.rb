@@ -7,7 +7,8 @@ class RolesController < ApplicationController
                                                     :update,
                                                     :destroy,
                                                     :logout,
-                                                    :search ]
+                                                    :search,
+                                                    :refresh ]
     before_filter :filter_unauthenticated, :only => [ :login,
                                                       :authenticate,
                                                       :signup,
@@ -26,10 +27,7 @@ class RolesController < ApplicationController
         geoloc = Geolocation.where("role_id=?",session[:role_id]).first
         Geolocation.update(geoloc.id, :latitude => params[:latitude],
                                       :longitude => params[:longitude])     
-        @roles = Geolocation.nearest_roles( 
-            :limit => params[:limit],
-            :max_distance => params[:max_distance], 
-            :role_id => session[:role_id])
+        @roles = Geolocation.nearest_roles(params[:limit],params[:max_distance],session[:role_id])
         render :partial => 'role', :layout => false, :locals => { :roles => @roles }
     end
 

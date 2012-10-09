@@ -28,5 +28,10 @@ module RolesHelper
         url_for :controller => :roles,
                 :action => :search
     end
+
+    def role_refresh_path
+        url_for :controller => :roles,
+                :action => :refresh
+    end
     
 end
