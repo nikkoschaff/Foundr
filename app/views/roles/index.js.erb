@@ -1,7 +1,3 @@
-
-<p id="demo">
-<script>
-
 	// Call getLocation when the page loads
 	$(document).ready(getLocation)
 
@@ -50,7 +46,3 @@
 	  	x.innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;	
 	  	$('role').html("<%= escape_javascript(render 'role', roles: @roles) %>");
 	  }
-
-	  function refreshResult()
-	  {}
-</script>

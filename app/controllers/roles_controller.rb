@@ -19,7 +19,7 @@ class RolesController < ApplicationController
 
 
     def index
-        @roles = Geolocation.nearest_roles( 20, 15.5, session[:role_id] )
+        #@roles = Geolocation.nearest_roles( 20, 15.5, session[:role_id] )
     end
 
     def refresh
@@ -30,6 +30,7 @@ class RolesController < ApplicationController
             :limit => params[:limit],
             :max_distance => params[:max_distance], 
             :role_id => session[:role_id])
+        render :partial => 'role', :layout => false, :locals => { :roles => @roles }
     end
 
     def new
