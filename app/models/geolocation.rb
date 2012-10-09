@@ -30,7 +30,7 @@ class Geolocation < ActiveRecord::Base
 		# Find distance from center for each location
 		locations.each do |loc|
 			locations_with_distance.push( { :id => loc.role_id,
-			 :distance => haversine_distance(role_id,loc.role_id) } )
+			 :distance => Geolocation.haversine_distance(role_id,loc.role_id) } )
 		end
 
 		sorted_locations = locations_with_distance.sort_by { |loc| loc[:distance] }
@@ -47,7 +47,7 @@ class Geolocation < ActiveRecord::Base
 
 	# Find distance between two points based on a spherical Earth
 	# Copy of one from Grid, used here for convenience
-	def haversine_distance( user_id, other_id )
+	def self.haversine_distance( user_id, other_id )
 		user = Geolocation.where("role_id=?",user_id).first
 		other = Geolocation.where("role_id=?",other_id).first
 		lat1 = user.latitude

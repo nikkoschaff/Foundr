@@ -2,6 +2,7 @@
 <p id="demo">
 <button onclick="getLocation()">Load more users</button>
 <script>
+	// TODO remove the button and make this call when page is loaded
 	var x=document.getElementById("demo");
 	function getLocation()
 	  {
@@ -30,8 +31,7 @@
 	    }
 	  }
 
-	  // TODO add jquery to send data
-	  // TODO use ambition_ids and tag_list in call
+	  // TODO call with ajax
 	  /**
 	   * Pseudocode:
 	   # params (limit = 0, distance = 0) - can be adjusted with each call

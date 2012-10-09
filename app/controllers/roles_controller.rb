@@ -19,16 +19,18 @@ class RolesController < ApplicationController
 
 
     def index
-        if params[:latitude].nil? or params[:longitude].nil or params[:accuracy].nil?
-            @roles = nil
-        else
-            geoloc = Geolocation.where("role_id=?",session[:role_id]).first
-            geoloc.accuracy = params[:accuracy]
-            geoloc.latitude = params[:latitude]
-            geoloc.longitude = params[:longitude]
-            geoloc.save!
+        #@roles = Role.order("email").page(params[:page]).per_page(10)
+#        if params[:latitude].nil? or params[:longitude].nil or params[:accuracy].nil?
+#            @roles = nil
+#        else
+            #geoloc = Geolocation.where("role_id=?",session[:role_id]).first
+ #           geoloc.accuracy = params[:accuracy]
+ #           geoloc.latitude = params[:latitude]
+ #           geoloc.longitude = params[:longitude]
+ #           geoloc.save!
             @roles = Geolocation.nearest_roles( 20, 15.5, session[:role_id] )
-        end
+           # @roles = @roles.paginate( :page => params[:page], :per_page => 10)
+#       end
     end
 
     # Returns a list of (TODO determine) role objects as @roles
