@@ -46,7 +46,7 @@ class RolesController < ApplicationController
 
     def update
         if @role.update_attributes( params[:role] )
-            redirect_to :action => :index
+            redirect_to :action => :show
         else
             render :action => :edit
         end

@@ -5,7 +5,7 @@
 <%= render :partial => 'login_form' %>
 
 <p>New to Foundr?  Sign up
-<%= link_to "here", :action => "signup", :controller => "roles" %>
+<%= link_to "here", role_signup_path, :method => :signup  %>
 </p>
 
 <a href="https://twitter.com/foundrapp" class="twitter-follow-button" data-show-count="false">Follow @foundrapp</a>
