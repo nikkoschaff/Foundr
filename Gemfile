@@ -1,7 +1,18 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem 'sqlite3'
+
+group :development do 
+	gem 'sqlite3' # Development
+end
+
+#group :production do 
+	# Use unicorn with nginx for web server
+	gem 'unicorn'
+	gem 'ps' # Production
+	gem 'activerecord-postgresql-adapter'
+	gem 'capistrano'
+#end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,9 +33,3 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'simple_form'
 gem 'will_paginate'
-
-# Use unicorn with nginx for web server
-gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
