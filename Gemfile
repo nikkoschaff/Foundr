@@ -8,7 +8,7 @@ gem 'activerecord-jdbcsqlite3-adapter'
 group :production do 
 	# Use unicorn with nginx for web server
 	gem 'unicorn'
-	gem 'ps' # Production
+	gem 'postgres-pr' # Production
 	gem 'activerecord-postgresql-adapter'
 	#gem 'capistrano'
 	gem 'rvm-capistrano'
