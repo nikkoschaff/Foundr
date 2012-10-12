@@ -56,7 +56,6 @@ class Role < ActiveRecord::Base
             Rails.logger.info("PASS - ME DIGEST: #{Role.digest(password)}")
             Rails.logger.info("PASS - DB DIGEST: #{Role.digest(role.password)}")            
         end
-
         if role and role.password == Role.digest( password )
             role
         else
@@ -81,8 +80,6 @@ private
             end
         end
     end
-
-
 
     def self.digest( source )
         Digest::SHA2.base64digest( source )
