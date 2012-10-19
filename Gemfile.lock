@@ -22,10 +22,6 @@ GEM
       activesupport (= 3.2.8)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-jdbc-adapter (1.2.2)
-    activerecord-jdbcsqlite3-adapter (1.2.2)
-      activerecord-jdbc-adapter (~> 1.2.2)
-      jdbc-sqlite3 (~> 3.7.2)
     activerecord-postgresql-adapter (0.0.1)
       pg
     activeresource (3.2.8)
@@ -36,7 +32,6 @@ GEM
       multi_json (~> 1.0)
     acts-as-taggable-on (2.3.3)
       rails (~> 3.0)
-    ansi (1.4.3)
     arel (3.0.2)
     builder (3.0.3)
     capistrano (2.13.4)
@@ -62,7 +57,6 @@ GEM
     highline (1.6.15)
     hike (1.2.1)
     i18n (0.6.1)
-    jdbc-sqlite3 (3.7.2)
     journey (1.0.4)
     jquery-rails (2.1.3)
       railties (>= 3.1.0, < 5.0)
@@ -94,8 +88,7 @@ GEM
       net-ssh (>= 1.99.1)
     pg (0.14.1)
     polyglot (0.3.3)
-    ps (0.0.8)
-      ansi
+    postgres-pr (0.6.3)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -164,14 +157,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-jdbcsqlite3-adapter
   activerecord-postgresql-adapter
   acts-as-taggable-on
   carrierwave
   coffee-rails (~> 3.2.1)
   jquery-rails
   mini_magick
-  ps
+  postgres-pr
   rails (= 3.2.8)
   rvm-capistrano
   sass-rails (~> 3.2.3)

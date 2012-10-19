@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 
 gem 'sqlite3'
-gem 'activerecord-jdbcsqlite3-adapter'
 
 group :production do 
 	# Use unicorn with nginx for web server
