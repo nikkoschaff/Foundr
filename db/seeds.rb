@@ -12,3 +12,4 @@ unless Ambition.find_by_id(3)
 	Ambition.create!(:name => "Join a team")
 	Ambition.create!(:name => "Networking")
 end
+ 
