@@ -13,4 +13,67 @@ two:
   longitude: -77.663002
   role_id: 2
 
+three:
+  id: 3
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 3
+
+four:
+  id: 4
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 4
+
+five:
+  id: 5
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 5
+
+six:
+  id: 6
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 6
+
+seven:
+  id: 7
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 7
+
+eight:
+  id: 8
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 8
+
+nine:
+  id: 9
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 9
+
+ten:
+  id: 10
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 10
+
+eleven:
+  id: 11
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 11
+
+twelve:
+  id: 12
+  latitude: 43.0752812
+  longitude: -77.663002
+  role_id: 12
+
+
+
+
 

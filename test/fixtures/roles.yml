@@ -9,3 +9,64 @@ two:
     email: test_user_2
     password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
     profile_id: 2
+
+three:
+    id: 3
+    email: test_user_3
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 3
+
+four:
+    id: 4
+    email: test_user_4
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 4
+
+five:
+    id: 5
+    email: test_user_5
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 5
+
+six:
+    id: 6
+    email: test_user_6
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 6
+
+seven:
+    id: 7
+    email: test_user_7
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 7
+
+eight:
+    id: 8
+    email: test_user_8
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 8
+
+nine:
+    id: 9
+    email: test_user_9
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 9
+
+ten:
+    id: 10
+    email: test_user_10
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 10
+
+eleven:
+    id: 11
+    email: test_user_11
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 11
+
+twelve:
+    id: 12
+    email: test_user_12
+    password: 6nax4lGgyHaz2W0sgfEnNt877TbsspP3nEk8CJkky9w= # password_2
+    profile_id: 12
+
