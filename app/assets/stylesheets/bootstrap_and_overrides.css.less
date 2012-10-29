@@ -1,51 +1,174 @@
 @import "twitter/bootstrap/bootstrap";
 body { 
 	padding-top: 60px;
-	background-color: black;
+	background-color: #fff;
+	font-family: 'Source Sans Pro', sans-serif;
 }
-
-.container {
-	margin: 0 auto;
-	float: none;
+body a{
+	color: #0058cf;
+  	-webkit-transition: all .3s ease-in-out;
+  	-moz-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
 }
-
-.navbar-text {
-	color:#000000;
+body a:hover{
+	color: #222222;
+	text-decoration: none;
+	 -webkit-transition: all .3s ease-in-out;
+  	-moz-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
 }
-
-.signup {
-	text-decoration:underline;
+footer{
+	background-color: #222222;
+	color: #fff;
+	padding: 20px;
+	min-height: 50px;
+	margin-top: 50px;
 }
-
-.userImage {
-	font-size:15px;
+.top20{
+	margin-top: 20px;
 }
-
-p {
-	color:#FFFFFF;
+.top30{
+	margin-top: 30px;
 }
-
-h1 {
-	color:#FFFFFF;
+.headerText{
+	font-size: 35pt;
+	font-weight: 200;
 }
-
-h2 {
-	color:#FFFFFF;
+.about{
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #ccc;
 }
-
-h3 {
-	color:#FFFFFF;
+.upper{
+	margin-top: 92px;
 }
-
-h4 {
-	color:#FFFFFF;
+.about p{
+	max-width: 500px;
 }
-
-.field {
-	color:#FFFFFF;
+.midText{
+	font-size: 12pt;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 5px;
+	border-top: 1px solid #ccc;
+	padding-top: 5px;
+	text-transform: lowercase;
 }
-
-
+.largeText{
+	font-size: 20pt;
+	text-transform: lowercase;
+	font-weight: 600;
+}
+.smallText{
+	font-size: 10pt;
+	color: #777777;
+}
+.largeText span{
+	font-weight: 200;
+}
+.field input{
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 0px;
+}
+.button{
+	background-color: #0058cf;
+	border: 0px;
+	color: #fff;
+	font-weight: 200;
+	padding: 10px;
+	text-transform: lowercase;
+  	-webkit-transition: all .3s ease-in-out;
+  	-moz-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
+}
+.button:hover{
+	background-color: #003680;
+  	-webkit-transition: all .3s ease-in-out;
+  	-moz-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
+}
+.logo{
+	background-image: url(/assets/logo.png);
+	background-repeat: no-repeat;
+	height: 200px;
+	margin-top: -30px;
+}
+.nycBack{
+  	background: url(/assets/bg.jpg) no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+	padding: 50px;
+	margin-top: -20px;
+}
+.loginBox{
+	background-color: #ffffff;
+	padding: 20px;
+	max-width: 300px;
+  	-moz-box-shadow: 0px 0px 10px #999;
+  	-webkit-box-shadow: 0px 0px 10px #999;
+  	box-shadow: 0px 0px 10px #999;
+}
+.myNav{
+	background-color: #fff;
+	margin-top: -60px;
+	padding: 20px;
+	height: 45px;
+	-moz-box-shadow: 0px 0px 10px #999;
+  	-webkit-box-shadow: 0px 0px 10px #999;
+  	box-shadow: 0px 0px 10px #999;
+}
+.myNav ul{
+	list-style: none;
+	text-transform: lowercase;
+}
+.myNav ul li{
+	display: inline;
+}
+.myNav ul li a{
+	color: #222222;
+	margin-right: 30px;
+  	-webkit-transition: all .3s ease-in-out;
+  	-moz-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
+  	padding: 10px;
+}
+.myNav ul li a:hover{
+	color: #fff;
+	background-color: #222222;
+	padding: 10px;
+	text-decoration: none;
+	-webkit-transition: all .3s ease-in-out;
+  	-moz-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+  	transition: all .3s ease-in-out;
+}
+#signIn{
+  display: none;
+  background-color: #fff;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 300px;
+  padding-bottom: 40px;
+  margin-right: 33px;
+  -moz-box-shadow: 0px 0px 10px #999;
+  -webkit-box-shadow: 0px 0px 10px #999;
+  box-shadow: 0px 0px 10px #999;
+}
+#signToggle{
+	cursor: pointer;
+}
+.tableWrapper{
+	background-color: #222222;
+	padding: 20px;
+}
 
 @import "twitter/bootstrap/responsive";
 

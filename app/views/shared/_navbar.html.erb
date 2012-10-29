@@ -1,35 +1,30 @@
-<div class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
+<div class="myNav">
+  <div class="container">
+    <% unless session[:role_id].nil? %>
+    <!-- Logged in -->
+  <ul>
+    <li><%= link_to "Foundr", role_index_path, :class =>
+    'brand' %></li>
+      <li>
+        <%= link_to "My Profile", :action =>"show", :controller => "roles", :id => session[:role_id] %></li>
+      <li>
+        <%= link_to "Edit Profile", :action =>"edit", :controller => "roles", :id => session[:role_id] %></li>
+      <li>
+        <%= link_to "Search", role_search_path, :method =>:search %></li>
+      <li>
+        <%= link_to "Logout", role_logout_path, :method =>:logout %></li>
+    </ul>
+    <!-- /Logged in -->
 
-	<% unless session[:role_id].nil? %>
-	<!-- Logged in -->
-	     <%= link_to "Foundr", role_index_path, :class => 'brand' %>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><%= link_to "My Profile", :action => "show", :controller => "roles", :id => session[:role_id] %></li>   
-            <li><%= link_to "Edit Profile", :action => "edit", :controller => "roles", :id => session[:role_id] %></li>
-            <li><%= link_to "Search", role_search_path, :method => :search %></li>
-            <li><%= link_to "Logout", role_logout_path, :method => :logout %></li>
-          </ul>
-        </div>
-	<!-- /Logged in -->
-	<% else %>
-        <!-- NOT Logged in -->
-        <%= link_to "Foundr", role_login_path, :class => 'brand', :method => :login %>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><%= link_to "Sign in", role_login_path, :method => :login %></li>
-            <li><%= link_to "Sign up", role_signup_path, :method => :signup %></li>
-          </ul>
-        </div>
-        <!-- /NOT logged in -->
-	<% end %>
-    </div>
-  </div>
+    <% else %>
+    <!-- NOT Logged in -->
+        <ul>
+    <li><%= link_to "Foundr", role_login_path, :class =>
+    'brand', :method => :login %></li>
+      <li>
+        <%= link_to "Sign in", role_login_path, :method =>:login %></li>
+      <li><a id="signToggle">Sign Up</a></li>
+    </ul>
+    <!-- /NOT logged in -->
+    <% end %></div>
 </div>

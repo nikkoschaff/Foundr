@@ -1,14 +1,58 @@
-<h1 class="login-header">Find your dream team</h1>
-<p class="login-text">Find and meet entrepreneurs, professionals, and innovators near you.</p>
+<!-- leave container in each file, not application/layouts -->
+<div class="nycBack">
+	<div class="container">
+		<div class="loginBox pull-right">
+			<p class="largeText">Find your <span>dream</span> team</p>
+			<p class="midText">
+				Find and meet entrepreneurs, professionals, and innovators near you.
+			</p>
+			<p class="smallText">Sign in to Foundr</p>
 
-<h3>Sign in to Foundr</h3>
-<%= render :partial => 'login_form' %>
+			<div class="loginPartial">
+				<%= render :partial =>'login_form' %></div>
 
-<p>New to Foundr?  Sign up
-<%= link_to "here", role_signup_path, :method => :signup  %>
-</p>
+			<p class="smallText">
+				New to Foundr?  Sign up
+				<%= link_to "here", role_signup_path, :method =>:signup  %></p>
 
-<a href="https://twitter.com/foundrapp" class="twitter-follow-button" data-show-count="false">Follow @foundrapp</a>
-<script>
+			<!-- twitter bitch -->
+			<a href="https://twitter.com/foundrapp" class="twitter-follow-button" data-show-count="false">Follow @foundrapp</a>
+			<script>
 	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 </script>
+		</div>
+		<div class="logo"></div>
+<div id="signIn">
+	<%= render :partial =>'form' %>
+</div>
+
+<script>
+$("#signToggle").click(function () {
+$("#signIn").toggle(200);
+});    
+</script>
+	</div>
+</div>
+
+<div class="container">
+	<div class="upper">
+		<div class="row">
+			<div class="span6">
+				<p class="headerText">find your dream team {now}</p>
+				<p class="midText top30">finding like minded professionals in your area has never been easier</p>
+			</div>
+		</div>
+	</div>
+	<div class="about">
+		<div class="row">
+			<div class="span6">
+				<p>Nam tortor metus, dapibus at pellentesque in, malesuada quis mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet justo a nulla viverra volutpat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce sed nibh sed lacus ultricies consequat sit amet iaculis dui.
+			</div>
+				<div class="span6">
+				<p>Nam tortor metus, dapibus at pellentesque in, malesuada quis mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				</p>
+				<p class="top20"><%= link_to "signing up is easy, and free", role_signup_path, :method =>:signup, :class => "button" %></p>
+			</div>
+	</div>
+</div>
+<%= render :partial => 'shared/footer' %>
