@@ -10,8 +10,6 @@
       <li>
         <%= link_to "Edit Profile", :action =>"edit", :controller => "roles", :id => session[:role_id] %></li>
       <li>
-        <%= link_to "Search", role_search_path, :method =>:search %></li>
-      <li>
         <%= link_to "Logout", role_logout_path, :method =>:logout %></li>
     </ul>
     <!-- /Logged in -->

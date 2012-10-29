@@ -15,7 +15,6 @@ Foundr::Application.routes.draw do
   resources :profiles
   resources :ambitions
 
-
   post 'roles/login' => 'roles#login'
   get 'roles/login' => 'roles#login'
   get 'roles/signup' => 'roles#signup'
