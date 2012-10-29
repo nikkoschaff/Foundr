@@ -7,7 +7,9 @@ group :development do
 end
 
 group :production do 
-	gem 'ps' # Production
+	gem 'pg'
+	gem 'postgres-pr'
+	gem 'activerecord-postgresql-adapter'
 end
 
 # Gems used only for assets and not required
