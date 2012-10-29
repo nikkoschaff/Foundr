@@ -2,15 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-gem 'sqlite3'
+group :development do 
+	gem 'sqlite3'
+end
 
 group :production do 
-	# Use unicorn with nginx for web server
-	gem 'unicorn'
-	gem 'postgres-pr' # Production
-	gem 'activerecord-postgresql-adapter'
-	#gem 'capistrano'
-	gem 'rvm-capistrano'
+	gem 'ps' # Production
 end
 
 # Gems used only for assets and not required
