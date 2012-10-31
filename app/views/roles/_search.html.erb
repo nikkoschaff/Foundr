@@ -1,8 +1,8 @@
 <div class="searchForm">
-  <%= form_tag role_search_path, :method => :post do %>
+  <%#= form_tag role_search_path, :method => :post do %>
 
     <div class="field">
-      <%= label_tag :ambition_ids, "Ambitions" %><br />
+      <%= label_tag :ambition_ids, "Ambitions" %>
       <% @ambitions = Ambition.all %>
       <% @ambitions.each do |ambition| %>
         <br />
@@ -12,14 +12,15 @@
       <% end %>
     </div>
 
+    <script>
+    var numAmbitions = <%= @ambitions.length %>
+    </script>
+
     <br />
     <div class="field">
       <%= label_tag :tag_list, "Skills (separated by commas)" %>
       <%= text_field_tag :tag_list %>
     </div>
 
-    <div class="actions">
-      <%= submit_tag "Search", :class => "btn btn-primary" %>
-    </div>
-  <% end %>
+  <%# end %>
 </div>

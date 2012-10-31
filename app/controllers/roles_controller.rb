@@ -18,24 +18,15 @@ class RolesController < ApplicationController
                                          :update,
                                          :destroy ]
 
-
-    def index
-        #@roles = Geolocation.nearest_roles( 20, 15.5, session[:role_id] )
-    end
-
     def refresh
-        # TODO params
-
-        
-
-
         geoloc = Geolocation.where("role_id=?",session[:role_id]).first
-        params[:latitude].nil? ? lat = geoloc.latitude : lat = params[:latitude]
-        params[:longitude].nil? ? lon = geoloc.longitude : lon = params[:longitude]
-        session[:limit] = params[:limit] unless params[:limit].nil?
-        session[:max_distance] = params[:max_distance] unless params[:max_distance].nil?        
-        Geolocation.update(geoloc.id, :latitude => lat, :longitude => lon)     
-        @roles = Geolocation.nearest_roles(session[:limit],session[:max_distance],session[:role_id])
+        Geolocation.update(geoloc.id, :latitude => params[:latitude],
+                                      :longitude => params[:longitude])     
+        @roles = Geolocation.nearest_roles(params[:limit],
+                                            params[:max_distance],
+                                            params[:ambition_ids],
+                                            params[:tag_list],
+                                            session[:role_id])
         render :partial => 'role', :layout => false, :locals => { :roles => @roles }
     end
 
@@ -102,9 +93,6 @@ class RolesController < ApplicationController
         end
     end
 
-    def search
-
-    end
 
 private
 

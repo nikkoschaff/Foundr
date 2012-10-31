@@ -11,10 +11,6 @@
 			<div class="loginPartial">
 				<%= render :partial =>'login_form' %></div>
 
-			<p class="smallText">
-				New to Foundr?  Sign up
-				<%= link_to "here", role_signup_path, :method =>:signup  %></p>
-
 			<!-- twitter bitch -->
 			<a href="https://twitter.com/foundrapp" class="twitter-follow-button" data-show-count="false">Follow @foundrapp</a>
 			<script>
@@ -22,10 +18,9 @@
 </script>
 		</div>
 		<div class="logo"></div>
-<div id="signIn">
+
+
 	<%= render :partial =>'form' %>
-</div>
-	<%= render 'form', :url => role_signup_path %>
 
 <script>
 $("#signToggle").click(function () {

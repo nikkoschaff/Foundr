@@ -10,20 +10,20 @@ class Geolocation < ActiveRecord::Base
 	# max_distance => minimum distance in km
 	# role_id => id of current sessions role
 	# Return: Array of role ids
-	def self.nearest_roles(limit, max_distance, role_id)
-		# TODO implement later with sockets
-		#grid = Grid.new
-		# TODO search filtering
-		#grid.nearest_role_ids( limit, max_distance, role_id,
-		#				 current_geolocation.latitude,
-		#				 current_geolocation.longitude,
-		#				 ambitions, tag_list )
+	def self.nearest_roles(limit, max_distance, ambition_ids, tag_list, role_id)
+		search_tags = []
+		unless tag_list.eql?("")
+			tag_arr = tag_list.downcase.split(",")
+			tag_arr.each { |tag| search_tags.push(tag.strip.squeeze(" ")) }				
+			search_tags = search_tags.sort
+		end
+		Rails.logger.info("%%%%%%%%%%%%%%%%%%%% search tags: #{search_tags}")
+		search_ambitions = Ambition.find_all_by_id(ambition_ids.split(",")).sort unless ambition_ids.eql?("")
 
 		# CURRENT ALGORITHM - Retrieve all DB entries, haversine distance for relative distance
 		# => sort by distance, cut off after distance > max_distance
 		max_distance = max_distance.to_i
 		limit = limit.to_i
-
 
 		# --- NOT SCALABLE IN THE SLIGHTEST!!!!! ---
 		current = Geolocation.where("role_id=?",role_id).last
@@ -40,10 +40,15 @@ class Geolocation < ActiveRecord::Base
 		sorted_locations = locations_with_distance.sort_by { |loc| loc[:distance] }
 		@roles = []
 		sorted_locations.each do |loc|
+			# Test if fails fundamental geolocation issues
 			if loc[:distance] > max_distance or @roles.size >= limit
 				break
-			else
-				@roles.push(Role.find(loc[:id]))
+			end
+
+			role = Role.find(loc[:id])
+			if (ambition_ids.eql?("") or role.profile.ambitions.sort & search_ambitions == search_ambitions) and
+				(tag_list.eql?("") or role.profile.tag_list.sort & search_tags == search_tags)
+				@roles.push(role)
 			end
 		end
 		@roles
