@@ -10,17 +10,12 @@
       <% end %>
     </div>
 
-    <script>
-    var numAmbitions = <%= @ambitions.length %>
-    </script>
-
     <br />
     <div class="field">
       <%= label_tag :tag_list, "Skills (separated by commas)" %>
       <%= text_field_tag :tag_list %>
     </div>
 </div>
-
 <div class="nycBack">
 <div class="container">
 <button class="button" onClick="getLocation()">Load more users</button>
@@ -71,12 +66,20 @@
 	  	}
 	  	lim += 20
 
-	  	// TODO extract info from ambitions and tag list
-
 	  	// Ambition ids: stored as a comma-separated string
 	  	var amb_ids = "";
+	  	var ambition_id = "";
+	  	for ( var i = 0; i < <%= @ambitions.length %>; i++ ) {	
+	  		// TODO get this line to work (for some reason, .checked breaks everything)
+	  		ambition_id = "ambitions_" + i.toString();
+	  		var ambition_box = document.getElementById(ambition_id);
+	  		if (ambition_box.checked){
+	  			amb_ids = amb_ids + i.toString() + ",";
+	  		}
+	  	}
+
 	  	// Taglist: stored as comma-separated string
-	  	var taglist = "html,ruby on rails,python";
+	  	var taglist = document.getElementById("tag_list").value;
 
 	  	"<% @roles = [] %>"
 	  	$.ajax({ type: "POST", url: "<%= role_refresh_path %>", data: { limit: lim, max_distance: max_dist, latitude: position.coords.latitude, longitude: position.coords.longitude, ambition_ids: amb_ids, tag_list: taglist }
