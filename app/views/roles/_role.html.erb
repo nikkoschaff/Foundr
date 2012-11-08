@@ -1,12 +1,9 @@
 <div class="tableWrapper">
 <div class="role">
-	<table class="table table-condensed">
+	<table class="table">
 	<% count = 0 %>
 	<% if @roles %>
-	<% Rails.logger.info("ROLES!!!! #{@roles}") %>
-
 		<% @roles.each do |role| %>
-			<% Rails.logger.info("Role? #{role}") %>
 		  <%= "<tr class=userRow>".html_safe if count % 4 == 0 %>
 		  <%= "</tr>".html_safe if count % 4 == 4 %>
 		    <td class="userData"><small><%= link_to "#{role.profile.name}", :action => "show", :controller => "roles", :id => role.id %></small>
